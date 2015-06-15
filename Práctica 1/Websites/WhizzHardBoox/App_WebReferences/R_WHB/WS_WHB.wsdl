@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://localhost/WS_WHB" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="http://localhost/WS_WHB" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://localhost/WS_WHB">
+      <s:element name="HelloWorld">
+        <s:complexType />
+      </s:element>
+      <s:element name="HelloWorldResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="HelloWorldResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="inscribirLibro">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="id" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="tit" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="exi" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="pag" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="tem" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="aut" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="inscribirLibroResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="inscribirLibroResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="registrarCliente">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="car" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="nom" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="dpi" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="dir" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="tel" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="registrarClienteResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="registrarClienteResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="llenarConsultarLibros">
+        <s:complexType />
+      </s:element>
+      <s:element name="llenarConsultarLibrosResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="llenarConsultarLibrosResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="HelloWorldSoapIn">
+    <wsdl:part name="parameters" element="tns:HelloWorld" />
+  </wsdl:message>
+  <wsdl:message name="HelloWorldSoapOut">
+    <wsdl:part name="parameters" element="tns:HelloWorldResponse" />
+  </wsdl:message>
+  <wsdl:message name="inscribirLibroSoapIn">
+    <wsdl:part name="parameters" element="tns:inscribirLibro" />
+  </wsdl:message>
+  <wsdl:message name="inscribirLibroSoapOut">
+    <wsdl:part name="parameters" element="tns:inscribirLibroResponse" />
+  </wsdl:message>
+  <wsdl:message name="registrarClienteSoapIn">
+    <wsdl:part name="parameters" element="tns:registrarCliente" />
+  </wsdl:message>
+  <wsdl:message name="registrarClienteSoapOut">
+    <wsdl:part name="parameters" element="tns:registrarClienteResponse" />
+  </wsdl:message>
+  <wsdl:message name="llenarConsultarLibrosSoapIn">
+    <wsdl:part name="parameters" element="tns:llenarConsultarLibros" />
+  </wsdl:message>
+  <wsdl:message name="llenarConsultarLibrosSoapOut">
+    <wsdl:part name="parameters" element="tns:llenarConsultarLibrosResponse" />
+  </wsdl:message>
+  <wsdl:portType name="WS_WHBSoap">
+    <wsdl:operation name="HelloWorld">
+      <wsdl:input message="tns:HelloWorldSoapIn" />
+      <wsdl:output message="tns:HelloWorldSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="inscribirLibro">
+      <wsdl:input message="tns:inscribirLibroSoapIn" />
+      <wsdl:output message="tns:inscribirLibroSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="registrarCliente">
+      <wsdl:input message="tns:registrarClienteSoapIn" />
+      <wsdl:output message="tns:registrarClienteSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="llenarConsultarLibros">
+      <wsdl:input message="tns:llenarConsultarLibrosSoapIn" />
+      <wsdl:output message="tns:llenarConsultarLibrosSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="WS_WHBSoap" type="tns:WS_WHBSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="HelloWorld">
+      <soap:operation soapAction="http://localhost/WS_WHB/HelloWorld" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="inscribirLibro">
+      <soap:operation soapAction="http://localhost/WS_WHB/inscribirLibro" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="registrarCliente">
+      <soap:operation soapAction="http://localhost/WS_WHB/registrarCliente" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="llenarConsultarLibros">
+      <soap:operation soapAction="http://localhost/WS_WHB/llenarConsultarLibros" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="WS_WHBSoap12" type="tns:WS_WHBSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="HelloWorld">
+      <soap12:operation soapAction="http://localhost/WS_WHB/HelloWorld" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="inscribirLibro">
+      <soap12:operation soapAction="http://localhost/WS_WHB/inscribirLibro" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="registrarCliente">
+      <soap12:operation soapAction="http://localhost/WS_WHB/registrarCliente" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="llenarConsultarLibros">
+      <soap12:operation soapAction="http://localhost/WS_WHB/llenarConsultarLibros" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="WS_WHB">
+    <wsdl:port name="WS_WHBSoap" binding="tns:WS_WHBSoap">
+      <soap:address location="http://localhost:1950/WS_WHB.asmx" />
+    </wsdl:port>
+    <wsdl:port name="WS_WHBSoap12" binding="tns:WS_WHBSoap12">
+      <soap12:address location="http://localhost:1950/WS_WHB.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>
