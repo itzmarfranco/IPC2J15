@@ -1,0 +1,630 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://localhost/WS_WHB" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="http://localhost/WS_WHB" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://localhost/WS_WHB">
+      <s:element name="HelloWorld">
+        <s:complexType />
+      </s:element>
+      <s:element name="HelloWorldResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="HelloWorldResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="inscribirLibro">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="id" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="tit" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="exi" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="pag" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="tem" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="aut" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="inscribirLibroResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="inscribirLibroResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="registrarCliente">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="car" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="nom" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="dpi" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="dir" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="tel" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="registrarClienteResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="registrarClienteResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="llenarConsultarLibros">
+        <s:complexType />
+      </s:element>
+      <s:element name="llenarConsultarLibrosResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="llenarConsultarLibrosResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="llenarPrestarLibro">
+        <s:complexType />
+      </s:element>
+      <s:element name="llenarPrestarLibroResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="llenarPrestarLibroResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="llenarReporte">
+        <s:complexType />
+      </s:element>
+      <s:element name="llenarReporteResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="llenarReporteResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="librosPrestadosSinDevolver">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="carne" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="librosPrestadosSinDevolverResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="librosPrestadosSinDevolverResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="clienteExiste">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="carne" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="clienteExisteResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="clienteExisteResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="yaPrestoElLibro">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="car" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="lib" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="yaPrestoElLibroResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="yaPrestoElLibroResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="yaReservoElLibro">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="car" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="lib" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="yaReservoElLibroResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="yaReservoElLibroResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="guardarPrestamo">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="car" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="lib" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="guardarPrestamoResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="guardarPrestamoResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="guardarReserva">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="car" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="lib" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="guardarReservaResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="guardarReservaResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ejempleresDisponibles">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="lib" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ejempleresDisponiblesResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="ejempleresDisponiblesResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="devolver">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="car" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="lib" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="devolverResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="devolverResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="HelloWorldSoapIn">
+    <wsdl:part name="parameters" element="tns:HelloWorld" />
+  </wsdl:message>
+  <wsdl:message name="HelloWorldSoapOut">
+    <wsdl:part name="parameters" element="tns:HelloWorldResponse" />
+  </wsdl:message>
+  <wsdl:message name="inscribirLibroSoapIn">
+    <wsdl:part name="parameters" element="tns:inscribirLibro" />
+  </wsdl:message>
+  <wsdl:message name="inscribirLibroSoapOut">
+    <wsdl:part name="parameters" element="tns:inscribirLibroResponse" />
+  </wsdl:message>
+  <wsdl:message name="registrarClienteSoapIn">
+    <wsdl:part name="parameters" element="tns:registrarCliente" />
+  </wsdl:message>
+  <wsdl:message name="registrarClienteSoapOut">
+    <wsdl:part name="parameters" element="tns:registrarClienteResponse" />
+  </wsdl:message>
+  <wsdl:message name="llenarConsultarLibrosSoapIn">
+    <wsdl:part name="parameters" element="tns:llenarConsultarLibros" />
+  </wsdl:message>
+  <wsdl:message name="llenarConsultarLibrosSoapOut">
+    <wsdl:part name="parameters" element="tns:llenarConsultarLibrosResponse" />
+  </wsdl:message>
+  <wsdl:message name="llenarPrestarLibroSoapIn">
+    <wsdl:part name="parameters" element="tns:llenarPrestarLibro" />
+  </wsdl:message>
+  <wsdl:message name="llenarPrestarLibroSoapOut">
+    <wsdl:part name="parameters" element="tns:llenarPrestarLibroResponse" />
+  </wsdl:message>
+  <wsdl:message name="llenarReporteSoapIn">
+    <wsdl:part name="parameters" element="tns:llenarReporte" />
+  </wsdl:message>
+  <wsdl:message name="llenarReporteSoapOut">
+    <wsdl:part name="parameters" element="tns:llenarReporteResponse" />
+  </wsdl:message>
+  <wsdl:message name="librosPrestadosSinDevolverSoapIn">
+    <wsdl:part name="parameters" element="tns:librosPrestadosSinDevolver" />
+  </wsdl:message>
+  <wsdl:message name="librosPrestadosSinDevolverSoapOut">
+    <wsdl:part name="parameters" element="tns:librosPrestadosSinDevolverResponse" />
+  </wsdl:message>
+  <wsdl:message name="clienteExisteSoapIn">
+    <wsdl:part name="parameters" element="tns:clienteExiste" />
+  </wsdl:message>
+  <wsdl:message name="clienteExisteSoapOut">
+    <wsdl:part name="parameters" element="tns:clienteExisteResponse" />
+  </wsdl:message>
+  <wsdl:message name="yaPrestoElLibroSoapIn">
+    <wsdl:part name="parameters" element="tns:yaPrestoElLibro" />
+  </wsdl:message>
+  <wsdl:message name="yaPrestoElLibroSoapOut">
+    <wsdl:part name="parameters" element="tns:yaPrestoElLibroResponse" />
+  </wsdl:message>
+  <wsdl:message name="yaReservoElLibroSoapIn">
+    <wsdl:part name="parameters" element="tns:yaReservoElLibro" />
+  </wsdl:message>
+  <wsdl:message name="yaReservoElLibroSoapOut">
+    <wsdl:part name="parameters" element="tns:yaReservoElLibroResponse" />
+  </wsdl:message>
+  <wsdl:message name="guardarPrestamoSoapIn">
+    <wsdl:part name="parameters" element="tns:guardarPrestamo" />
+  </wsdl:message>
+  <wsdl:message name="guardarPrestamoSoapOut">
+    <wsdl:part name="parameters" element="tns:guardarPrestamoResponse" />
+  </wsdl:message>
+  <wsdl:message name="guardarReservaSoapIn">
+    <wsdl:part name="parameters" element="tns:guardarReserva" />
+  </wsdl:message>
+  <wsdl:message name="guardarReservaSoapOut">
+    <wsdl:part name="parameters" element="tns:guardarReservaResponse" />
+  </wsdl:message>
+  <wsdl:message name="ejempleresDisponiblesSoapIn">
+    <wsdl:part name="parameters" element="tns:ejempleresDisponibles" />
+  </wsdl:message>
+  <wsdl:message name="ejempleresDisponiblesSoapOut">
+    <wsdl:part name="parameters" element="tns:ejempleresDisponiblesResponse" />
+  </wsdl:message>
+  <wsdl:message name="devolverSoapIn">
+    <wsdl:part name="parameters" element="tns:devolver" />
+  </wsdl:message>
+  <wsdl:message name="devolverSoapOut">
+    <wsdl:part name="parameters" element="tns:devolverResponse" />
+  </wsdl:message>
+  <wsdl:portType name="WS_WHBSoap">
+    <wsdl:operation name="HelloWorld">
+      <wsdl:input message="tns:HelloWorldSoapIn" />
+      <wsdl:output message="tns:HelloWorldSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="inscribirLibro">
+      <wsdl:input message="tns:inscribirLibroSoapIn" />
+      <wsdl:output message="tns:inscribirLibroSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="registrarCliente">
+      <wsdl:input message="tns:registrarClienteSoapIn" />
+      <wsdl:output message="tns:registrarClienteSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="llenarConsultarLibros">
+      <wsdl:input message="tns:llenarConsultarLibrosSoapIn" />
+      <wsdl:output message="tns:llenarConsultarLibrosSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="llenarPrestarLibro">
+      <wsdl:input message="tns:llenarPrestarLibroSoapIn" />
+      <wsdl:output message="tns:llenarPrestarLibroSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="llenarReporte">
+      <wsdl:input message="tns:llenarReporteSoapIn" />
+      <wsdl:output message="tns:llenarReporteSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="librosPrestadosSinDevolver">
+      <wsdl:input message="tns:librosPrestadosSinDevolverSoapIn" />
+      <wsdl:output message="tns:librosPrestadosSinDevolverSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="clienteExiste">
+      <wsdl:input message="tns:clienteExisteSoapIn" />
+      <wsdl:output message="tns:clienteExisteSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="yaPrestoElLibro">
+      <wsdl:input message="tns:yaPrestoElLibroSoapIn" />
+      <wsdl:output message="tns:yaPrestoElLibroSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="yaReservoElLibro">
+      <wsdl:input message="tns:yaReservoElLibroSoapIn" />
+      <wsdl:output message="tns:yaReservoElLibroSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="guardarPrestamo">
+      <wsdl:input message="tns:guardarPrestamoSoapIn" />
+      <wsdl:output message="tns:guardarPrestamoSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="guardarReserva">
+      <wsdl:input message="tns:guardarReservaSoapIn" />
+      <wsdl:output message="tns:guardarReservaSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ejempleresDisponibles">
+      <wsdl:input message="tns:ejempleresDisponiblesSoapIn" />
+      <wsdl:output message="tns:ejempleresDisponiblesSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="devolver">
+      <wsdl:input message="tns:devolverSoapIn" />
+      <wsdl:output message="tns:devolverSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="WS_WHBSoap" type="tns:WS_WHBSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="HelloWorld">
+      <soap:operation soapAction="http://localhost/WS_WHB/HelloWorld" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="inscribirLibro">
+      <soap:operation soapAction="http://localhost/WS_WHB/inscribirLibro" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="registrarCliente">
+      <soap:operation soapAction="http://localhost/WS_WHB/registrarCliente" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="llenarConsultarLibros">
+      <soap:operation soapAction="http://localhost/WS_WHB/llenarConsultarLibros" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="llenarPrestarLibro">
+      <soap:operation soapAction="http://localhost/WS_WHB/llenarPrestarLibro" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="llenarReporte">
+      <soap:operation soapAction="http://localhost/WS_WHB/llenarReporte" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="librosPrestadosSinDevolver">
+      <soap:operation soapAction="http://localhost/WS_WHB/librosPrestadosSinDevolver" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="clienteExiste">
+      <soap:operation soapAction="http://localhost/WS_WHB/clienteExiste" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="yaPrestoElLibro">
+      <soap:operation soapAction="http://localhost/WS_WHB/yaPrestoElLibro" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="yaReservoElLibro">
+      <soap:operation soapAction="http://localhost/WS_WHB/yaReservoElLibro" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="guardarPrestamo">
+      <soap:operation soapAction="http://localhost/WS_WHB/guardarPrestamo" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="guardarReserva">
+      <soap:operation soapAction="http://localhost/WS_WHB/guardarReserva" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ejempleresDisponibles">
+      <soap:operation soapAction="http://localhost/WS_WHB/ejempleresDisponibles" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="devolver">
+      <soap:operation soapAction="http://localhost/WS_WHB/devolver" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="WS_WHBSoap12" type="tns:WS_WHBSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="HelloWorld">
+      <soap12:operation soapAction="http://localhost/WS_WHB/HelloWorld" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="inscribirLibro">
+      <soap12:operation soapAction="http://localhost/WS_WHB/inscribirLibro" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="registrarCliente">
+      <soap12:operation soapAction="http://localhost/WS_WHB/registrarCliente" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="llenarConsultarLibros">
+      <soap12:operation soapAction="http://localhost/WS_WHB/llenarConsultarLibros" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="llenarPrestarLibro">
+      <soap12:operation soapAction="http://localhost/WS_WHB/llenarPrestarLibro" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="llenarReporte">
+      <soap12:operation soapAction="http://localhost/WS_WHB/llenarReporte" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="librosPrestadosSinDevolver">
+      <soap12:operation soapAction="http://localhost/WS_WHB/librosPrestadosSinDevolver" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="clienteExiste">
+      <soap12:operation soapAction="http://localhost/WS_WHB/clienteExiste" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="yaPrestoElLibro">
+      <soap12:operation soapAction="http://localhost/WS_WHB/yaPrestoElLibro" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="yaReservoElLibro">
+      <soap12:operation soapAction="http://localhost/WS_WHB/yaReservoElLibro" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="guardarPrestamo">
+      <soap12:operation soapAction="http://localhost/WS_WHB/guardarPrestamo" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="guardarReserva">
+      <soap12:operation soapAction="http://localhost/WS_WHB/guardarReserva" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ejempleresDisponibles">
+      <soap12:operation soapAction="http://localhost/WS_WHB/ejempleresDisponibles" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="devolver">
+      <soap12:operation soapAction="http://localhost/WS_WHB/devolver" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="WS_WHB">
+    <wsdl:port name="WS_WHBSoap" binding="tns:WS_WHBSoap">
+      <soap:address location="http://localhost:1950/WS_WHB.asmx" />
+    </wsdl:port>
+    <wsdl:port name="WS_WHBSoap12" binding="tns:WS_WHBSoap12">
+      <soap12:address location="http://localhost:1950/WS_WHB.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

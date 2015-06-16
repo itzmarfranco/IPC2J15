@@ -1,0 +1,15 @@
+c:\users\itzmarwin7\documents\visual studio 2012\Projects\WhizzHardBooks\WhizzHardBooks\bin\Debug\WhizzHardBooks.exe.config
+c:\users\itzmarwin7\documents\visual studio 2012\Projects\WhizzHardBooks\WhizzHardBooks\bin\Debug\WhizzHardBooks.exe
+c:\users\itzmarwin7\documents\visual studio 2012\Projects\WhizzHardBooks\WhizzHardBooks\bin\Debug\WhizzHardBooks.pdb
+c:\users\itzmarwin7\documents\visual studio 2012\Projects\WhizzHardBooks\WhizzHardBooks\obj\Debug\WhizzHardBooks.csprojResolveAssemblyReference.cache
+c:\users\itzmarwin7\documents\visual studio 2012\Projects\WhizzHardBooks\WhizzHardBooks\obj\Debug\WhizzHardBooks.Properties.Resources.resources
+c:\users\itzmarwin7\documents\visual studio 2012\Projects\WhizzHardBooks\WhizzHardBooks\obj\Debug\WhizzHardBooks.csproj.GenerateResource.Cache
+c:\users\itzmarwin7\documents\visual studio 2012\Projects\WhizzHardBooks\WhizzHardBooks\obj\Debug\WhizzHardBooks.exe
+c:\users\itzmarwin7\documents\visual studio 2012\Projects\WhizzHardBooks\WhizzHardBooks\obj\Debug\WhizzHardBooks.pdb
+c:\users\itzmarwin7\documents\visual studio 2012\Projects\WhizzHardBooks\WhizzHardBooks\obj\Debug\WhizzHardBooks.principal.resources
+c:\users\itzmarwin7\documents\visual studio 2012\Projects\WhizzHardBooks\WhizzHardBooks\obj\Debug\WhizzHardBooks.inscribir.resources
+C:\Users\ItzmarWin7\Documents\Visual Studio 2012\Projects\WhizzHardBooks\WhizzHardBooks\obj\Debug\WhizzHardBooks.registro.resources
+C:\Users\ItzmarWin7\Documents\Visual Studio 2012\Projects\WhizzHardBooks\WhizzHardBooks\obj\Debug\WhizzHardBooks.consultar.resources
+C:\Users\ItzmarWin7\Documents\Visual Studio 2012\Projects\WhizzHardBooks\WhizzHardBooks\obj\Debug\WhizzHardBooks.prestamo.resources
+C:\Users\ItzmarWin7\Documents\Visual Studio 2012\Projects\WhizzHardBooks\WhizzHardBooks\obj\Debug\WhizzHardBooks.devolucion.resources
+C:\Users\ItzmarWin7\Documents\Visual Studio 2012\Projects\WhizzHardBooks\WhizzHardBooks\obj\Debug\WhizzHardBooks.reporte.resources
