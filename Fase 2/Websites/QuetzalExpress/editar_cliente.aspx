@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="registro_clientes.aspx.cs" Inherits="registro_clientes" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="editar_cliente.aspx.cs" Inherits="editar_cliente" %>
 
 <!DOCTYPE html>
 
@@ -13,11 +13,12 @@
         <table>
             <tr>
                 <td>
-                    <asp:HyperLink ID="HyperLink1" runat="server" NavigateUrl="~/principal.aspx">Inicio</asp:HyperLink>
+                    Casilla:
+                </td>
+                <td>
+                    <asp:Label ID="lblcasilla" runat="server" Text=""></asp:Label>
                 </td>
             </tr>
-        </table>
-        <table>
             <tr>
                 <td>
                     Nombre*:
@@ -63,9 +64,7 @@
                     Sucursal de preferencia:
                 </td>
                 <td>
-                    <asp:DropDownList ID="ddlsucursales" runat="server">
-                        <asp:ListItem>Ninguna</asp:ListItem>
-                    </asp:DropDownList>
+                    <asp:DropDownList ID="ddlsucursales" runat="server"></asp:DropDownList>
                 </td>
             </tr>
             <tr>
@@ -76,17 +75,9 @@
                     <asp:TextBox ID="txttarjeta" runat="server"></asp:TextBox>
                 </td>
                 <td>
-                    Debe ingresar un número de tarjeta para poder registrarse como cliente
+                    Debe ingresar un número de tarjeta para poder permanecer como cliente
                 </td>
-            </tr>
-            <tr>
-                <td>
-                    Correo*:
-                </td>
-                <td>
-                    <asp:TextBox ID="txtcorreo" runat="server"></asp:TextBox>
-                </td>                
-            </tr>             
+            </tr>                     
             <tr>
                 <td>
                     Contraseña*:
@@ -110,10 +101,10 @@
             </tr>
             <tr>
                 <td>
-                    <asp:Button ID="btnregistrar" runat="server" Text="Registrarse" OnClick="btnregistrar_Click" />
+                    <asp:Button ID="btnactualizar" runat="server" Text="Actualizar" OnClick="btnactualizar_Click"/>
                 </td>
                 <td>
-                    <asp:Button ID="btnvolver" runat="server" Text="Volver" OnClick="btnvolver_Click" />
+                    <asp:Button ID="btnvolver" runat="server" Text="Volver" OnClick="btnvolver_Click"/>
                 </td>
             </tr>
         </table>
