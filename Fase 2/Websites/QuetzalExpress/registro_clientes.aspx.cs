@@ -31,7 +31,7 @@ public partial class registro_clientes : System.Web.UI.Page
             if (con == co2)
             {
                 R_QE.WS_QE servicio = new R_QE.WS_QE();
-                Boolean exito = servicio.registrarCliente(nom, ape, nit, tel, dom, suc, tar, cor, con);
+                Boolean exito = servicio.registrarSolicitud(nom, ape, nit, tel, dom, suc, tar, cor, con);
                 if (exito)
                 {
                     lblerror.Text = "Espere a la aprobación de un empleado";

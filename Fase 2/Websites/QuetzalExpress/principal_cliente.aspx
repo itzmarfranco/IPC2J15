@@ -14,19 +14,13 @@
             <tr>
                 <td>
                     <asp:HyperLink ID="HyperLink1" runat="server">Información de paquetes</asp:HyperLink>
-                </td>
-            </tr>
-            <tr>
+                </td>            
                 <td>
                     <asp:HyperLink ID="HyperLink2" runat="server">Cotización</asp:HyperLink>
-                </td>
-            </tr>
-            <tr>
+                </td>            
                 <td>
                     <asp:HyperLink ID="HyperLink3" runat="server">Editar perfil</asp:HyperLink>
-                </td>
-            </tr>
-            <tr>
+                </td>           
                 <td>
                     <asp:HyperLink ID="HyperLink4" runat="server" NavigateUrl="~/principal.aspx">Salir</asp:HyperLink>
                 </td>

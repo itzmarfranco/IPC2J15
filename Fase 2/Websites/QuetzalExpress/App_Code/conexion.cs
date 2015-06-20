@@ -117,22 +117,29 @@ public class conexion
         c.cerrar();
         return resultado;
     }
-    public static bool clienteExiste(String correo, String contra)
+    public static Boolean clienteExiste(String correo, String contra)
     {
         String query = string.Format("SELECT * FROM CLIENTE WHERE correo = '{0}' AND contraseña = '{1}'", correo, contra);
-        bool existe = ejecutar1(query);
+        Boolean existe = ejecutar1(query);
         return existe;
     }
-    public static bool empleadoExiste(String correo, String contra)
+    public static Boolean empleadoExiste(String correo, String contra)
     {
         String query = string.Format("SELECT * FROM EMPLEADO WHERE correo = '{0}' AND contraseña = '{1}'", correo, contra);
-        bool existe = ejecutar1(query);
+        Boolean existe = ejecutar1(query);
         return existe;
     }
-    public static String obtenerCampoCliente(String campo, String tabla, String casilla)
+    public static String obtenerCampoCliente(String campo, String casilla)
     {
         String valor = "";
-        String query = string.Format("SELECT {0} FROM {1} WHERE casilla = '{2}'", campo, tabla, casilla);
+        String query = string.Format("SELECT {0} FROM CLIENTE WHERE casilla = '{1}'", campo, casilla);
+        valor = conexion.ejecutar3(query);
+        return valor;
+    }
+    public static String obtenerCampoEmpleado(String campo, String correo)
+    {
+        String valor = "";
+        String query = string.Format("SELECT {0} FROM EMPLEADO WHERE correo = '{1}'", campo, correo);
         valor = conexion.ejecutar3(query);
         return valor;
     }
