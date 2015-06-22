@@ -10,7 +10,13 @@
 <body>
     <form id="form1" runat="server">
     <div>
-    
+        <table>
+            <tr>
+                <td>
+                    <asp:HyperLink ID="HyperLink1" runat="server" NavigateUrl="~/reportar_perdido.aspx">Reportar perdido</asp:HyperLink>
+                </td>
+            </tr>
+        </table>
     </div>
     </form>
 </body>

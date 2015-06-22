@@ -129,10 +129,17 @@ public class conexion
         Boolean existe = ejecutar1(query);
         return existe;
     }
-    public static String obtenerCampoCliente(String campo, String casilla)
+    public static String obtenerCampoCliente(String campo, int casilla)
     {
         String valor = "";
         String query = string.Format("SELECT {0} FROM CLIENTE WHERE casilla = '{1}'", campo, casilla);
+        valor = conexion.ejecutar3(query);
+        return valor;
+    }
+    public static String obtenerCampoCliente(String campo, String correo)
+    {
+        String valor = "";
+        String query = string.Format("SELECT {0} FROM CLIENTE WHERE correo = '{1}'", campo, correo);
         valor = conexion.ejecutar3(query);
         return valor;
     }

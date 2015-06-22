@@ -13,13 +13,13 @@
         <table>
             <tr>
                 <td>
-                    <asp:HyperLink ID="HyperLink1" runat="server">Información de paquetes</asp:HyperLink>
+                    <asp:HyperLink ID="HyperLink1" runat="server" NavigateUrl="~/informacion_paquetes.aspx">Información de paquetes</asp:HyperLink>
                 </td>            
                 <td>
-                    <asp:HyperLink ID="HyperLink2" runat="server">Cotización</asp:HyperLink>
+                    <asp:HyperLink ID="HyperLink2" runat="server" NavigateUrl="~/cotizacion.aspx">Cotización</asp:HyperLink>
                 </td>            
                 <td>
-                    <asp:HyperLink ID="HyperLink3" runat="server">Editar perfil</asp:HyperLink>
+                    <asp:HyperLink ID="HyperLink3" runat="server" NavigateUrl="~/editar_cliente.aspx">Editar perfil</asp:HyperLink>
                 </td>           
                 <td>
                     <asp:HyperLink ID="HyperLink4" runat="server" NavigateUrl="~/principal.aspx">Salir</asp:HyperLink>

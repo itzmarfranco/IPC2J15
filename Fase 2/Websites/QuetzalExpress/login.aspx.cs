@@ -23,7 +23,7 @@ public partial class login : System.Web.UI.Page
         {
             lblerror.Text = "";
             if (conexion.clienteExiste(correo, contra))
-            {      
+            {
                 int casilla = Convert.ToInt32(conexion.obtenerCampoCliente("casilla", correo));
                 String nombre = conexion.obtenerCampoCliente("nombre", correo);
                 String apellido = conexion.obtenerCampoCliente("apellido", correo);
