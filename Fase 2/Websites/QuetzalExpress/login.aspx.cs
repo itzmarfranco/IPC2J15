@@ -39,6 +39,14 @@ public partial class login : System.Web.UI.Page
             }
             else if (conexion.empleadoExiste(correo, contra))
             {
+                int id = Convert.ToInt32(conexion.obtenerCampoEmpleado("id", correo));
+                String nombre = conexion.obtenerCampoEmpleado("nombre", correo);
+                String apellido = conexion.obtenerCampoEmpleado("apellido", correo);
+                double sueldo = Convert.ToDouble(conexion.obtenerCampoEmpleado("sueldo", correo));
+                String sucursal = conexion.obtenerCampoEmpleado("sucursal", correo);
+                String departamento = conexion.obtenerCampoEmpleado("departamento", correo);
+                String tipo = conexion.obtenerCampoEmpleado("tipo", correo);
+                Session["empleado"] = new empleado(id, departamento, nombre, apellido, sueldo, sucursal, correo, contra, tipo);
                 if (conexion.obtenerCampoEmpleado("departamento", correo) == "Registro" && conexion.obtenerCampoEmpleado("tipo", correo) == "empleado")
                 {
                     Response.Redirect("/principal_registro.aspx");
@@ -59,14 +67,6 @@ public partial class login : System.Web.UI.Page
                 {
                     Response.Redirect("/principal_admin.aspx");
                 }
-                int id = Convert.ToInt32(conexion.obtenerCampoEmpleado("id", correo));                
-                String nombre = conexion.obtenerCampoEmpleado("nombre", correo);
-                String apellido = conexion.obtenerCampoEmpleado("apellido", correo);
-                double sueldo = Convert.ToDouble(conexion.obtenerCampoEmpleado("apellido", correo));
-                String sucursal = conexion.obtenerCampoEmpleado("sucursal", correo);
-                String departamento = conexion.obtenerCampoEmpleado("departamento", correo);
-                String tipo = conexion.obtenerCampoEmpleado("tipo", correo);
-                Session["empleado"] = new empleado(id, departamento, nombre, apellido, sueldo, sucursal, correo, contra, tipo);
             }
             else
             {

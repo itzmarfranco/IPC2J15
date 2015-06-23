@@ -35,6 +35,14 @@ public class WS_QE : System.Web.Services.WebService {
         return exito;
     }
     [WebMethod]
+    public Boolean registrarEmpleado(String nom, String ape, int tel, String dom, Double sue, String suc, String dep, String cor, String con)
+    {
+        Boolean exito;
+        String query = string.Format("INSERT INTO EMPLEADO VALUES ('{0}', '{1}', {2}, '{3}', {4}, '{5}', '{6}', '{7}', '{8}', 'empleado')", nom, ape, tel, dom, sue, suc, dep, cor, con);
+        exito = conexion.ejecutar2(query);
+        return exito;
+    }
+    [WebMethod]
     public Boolean actualizarCliente(String nom, String ape, String nit, int tel, String dom, String suc, String tar, String con, String cas)
     {
         Boolean exito = false;
@@ -104,6 +112,19 @@ public class WS_QE : System.Web.Services.WebService {
     {
         conexion c = new conexion();
         SqlCommand sqlcmd = new SqlCommand("SELECT * FROM PAQUETE", c.obtenerConexion());
+        c.abrir();
+        SqlDataAdapter sqlda = new SqlDataAdapter(sqlcmd);
+        DataSet ds = new DataSet();
+        sqlda.Fill(ds);
+        c.cerrar();
+        return ds;
+    }
+    [WebMethod]
+    public DataSet cargarDepartamento(String suc, String dep)
+    {
+        conexion c = new conexion();
+        String query = string.Format("SELECT id AS 'ID', nombre AS 'Nombre', apellido AS 'Apellido', sueldo AS 'Sueldo', sucursal AS 'Sucursal', departamento AS 'Departamento' FROM EMPLEADO WHERE sucursal = '{0}' AND departamento = '{1}' AND tipo != 'Director'", suc, dep);
+        SqlCommand sqlcmd = new SqlCommand(query, c.obtenerConexion());
         c.abrir();
         SqlDataAdapter sqlda = new SqlDataAdapter(sqlcmd);
         DataSet ds = new DataSet();
@@ -253,7 +274,7 @@ public class WS_QE : System.Web.Services.WebService {
     public DataSet cargarEntrega(int cas)
     {
         conexion c = new conexion();
-        String query = string.Format("SELECT lote AS 'Lote', peso as 'Peso', precio AS 'Precio' FROM BODEGA WHERE casilla = {0}", cas);
+        String query = string.Format("SELECT lote AS 'Lote', peso as 'Peso', precio AS 'Precio' FROM BODEGA WHERE casilla = {0} AND estado = 'disponible'", cas);
         SqlCommand sqlcmd = new SqlCommand(query, c.obtenerConexion());
         c.abrir();
         SqlDataAdapter sqlda = new SqlDataAdapter(sqlcmd);
@@ -298,5 +319,111 @@ public class WS_QE : System.Web.Services.WebService {
         String query = string.Format("SELECT MAX(id) FROM FACTURA");
         paquete = Convert.ToInt32(conexion.ejecutar3(query));
         return paquete;
+    }
+    [WebMethod]
+    public Boolean modificarFactura(int paq)
+    {
+        Boolean exito = false;
+        String query = string.Format("UPDATE FACTURA SET total = 0", paq);
+        exito = conexion.ejecutar1(query);
+        return exito;
+    }
+    [WebMethod]
+    public Boolean devolverPaquete(int paq)
+    {
+        Boolean exito = false;
+        String query = string.Format("INSERT INTO ESTADO VALUES ({0}, (SELECT GETDATE()), 'Devuelto')", paq);
+        exito = conexion.ejecutar1(query);
+        return exito;
+    }
+    [WebMethod]
+    public Boolean paqueteExiste(int paq)
+    {
+        Boolean exito = false;
+        String query = string.Format("SELECT * FROM ESTADO WHERE paquete = {0}", paq);
+        exito = conexion.ejecutar1(query);
+        return exito;
+    }
+    [WebMethod]
+    public Boolean paquetePagado(int paq)
+    {
+        Boolean exito = false;
+        String query = string.Format("SELECT * FROM ESTADO WHERE estado = 'Entregado' AND paquete = {0}", paq);
+        exito = conexion.ejecutar1(query);
+        return exito;
+    }
+    [WebMethod]
+    public DataSet llenarInfoCliente(String dato)
+    {
+        conexion c = new conexion();
+        String query = string.Format("SELECT casilla AS 'Casilla', nombre AS 'Nombre', apellido AS 'Apellido', telefono AS 'Teléfono', correo AS 'Correo' FROM CLIENTE WHERE casilla LIKE '%{0}%' OR nombre LIKE '%{0}%' OR apellido LIKE '%{0}%' OR telefono LIKE '%{0}%' OR correo LIKE '%{0}%'", dato);
+        SqlCommand sqlcmd = new SqlCommand(query, c.obtenerConexion());
+        c.abrir();
+        SqlDataAdapter sqlda = new SqlDataAdapter(sqlcmd);
+        DataSet ds = new DataSet();
+        sqlda.Fill(ds);
+        c.cerrar();
+        return ds;
+    }
+    [WebMethod]
+    public Boolean despedirEmpleado(int id)
+    {
+        Boolean exito = false;
+        String query = string.Format("DELETE FROM EMPLEADO WHERE id = {0}", id);
+        exito = conexion.ejecutar1(query);
+        return exito;
+    }
+    [WebMethod]
+    public Boolean actualizarEmpleado(int id, Double sue, String suc, String dep)
+    {
+        Boolean exito = false;
+        String query = string.Format("UPDATE EMPLEADO SET sueldo = {0}, sucursal = '{1}', departamento = '{2}' WHERE id = {3}", sue, suc, dep, id);
+        exito = conexion.ejecutar2(query);
+        return exito;
+    }
+    [WebMethod]
+    public Boolean actualizarEstado(int paq, String est)
+    {
+        Boolean exito = false;
+        String query = string.Format("INSERT INTO ESTADO VALUES ({0}, (SELECT GETDATE()), '{1}')", paq, est);
+        exito = conexion.ejecutar2(query);
+        return exito;
+    }
+    [WebMethod]
+    public Boolean agregarCobro(String nom, Double val)
+    {
+        Boolean exito = false;
+        String query = string.Format("INSERT INTO COBRO VALUES ('{0}', {1}, 'habilitado')", nom, val);
+        exito = conexion.ejecutar2(query);
+        return exito;
+    }
+    [WebMethod]
+    public Boolean actualizarCobro(String nom, Double val, int id)
+    {
+        Boolean exito = false;
+        String query = string.Format("UPDATE COBRO SET nombre = '{0}', valor = {1} WHERE id = {2}", nom, val, id);
+        exito = conexion.ejecutar2(query);
+        return exito;
+    }
+    [WebMethod]
+    public DataSet llenarCobros()
+    {
+        conexion c = new conexion();
+        String query = string.Format("SELECT id AS 'ID', nombre AS 'Nombre', valor AS 'Valor' FROM COBRO");
+        SqlCommand sqlcmd = new SqlCommand(query, c.obtenerConexion());
+        c.abrir();
+        SqlDataAdapter sqlda = new SqlDataAdapter(sqlcmd);
+        DataSet ds = new DataSet();
+        sqlda.Fill(ds);
+        c.cerrar();
+        return ds;
+    }
+    [WebMethod]
+    public Boolean inhabilitarCobro(int id)
+    {
+        Boolean exito = false;
+        String query = string.Format("UPDATE COBRO SET estado = 'inhabilitado' WHERE id = {0}", id);
+        exito = conexion.ejecutar1(query);
+        return exito;
     }
 }

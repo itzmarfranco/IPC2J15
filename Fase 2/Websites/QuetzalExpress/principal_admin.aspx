@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="principal_bodega.aspx.cs" Inherits="principal_bodega" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="principal_admin.aspx.cs" Inherits="principal_admin" %>
 
 <!DOCTYPE html>
 
@@ -13,7 +13,7 @@
         <table>
             <tr>
                 <td>
-                    <asp:HyperLink ID="HyperLink1" runat="server" NavigateUrl="~/reportar_perdido.aspx">Reportar perdido</asp:HyperLink>
+                    <asp:HyperLink ID="HyperLink1" runat="server" NavigateUrl="~/cobros.aspx">Cobros</asp:HyperLink>
                 </td>
                 <td>
                     <asp:HyperLink ID="HyperLink2" runat="server" NavigateUrl="~/principal.aspx">Salir</asp:HyperLink>

@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="control_paquetes.aspx.cs" Inherits="Control_de_paquetes" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="agregar_cobro.aspx.cs" Inherits="agregar_cobro" %>
 
 <!DOCTYPE html>
 
@@ -13,24 +13,18 @@
         <table>
             <tr>
                 <td>
-                    Paquete:
+                    Nombre:
                 </td>
                 <td>
-                    <asp:DropDownList ID="ddlpaquetes" runat="server"></asp:DropDownList>
+                    <asp:TextBox ID="txtnombre" runat="server"></asp:TextBox>
                 </td>
             </tr>
             <tr>
                 <td>
-                    Estado:
+                    Valor:
                 </td>
                 <td>
-                    <asp:DropDownList ID="ddlestados" runat="server">
-                        <asp:ListItem>Recibido</asp:ListItem>
-                        <asp:ListItem>En lote</asp:ListItem>
-                        <asp:ListItem>En avión</asp:ListItem>
-                        <asp:ListItem>En bodega</asp:ListItem>
-                        <asp:ListItem>Entregado</asp:ListItem>
-                    </asp:DropDownList>
+                    <asp:TextBox ID="txtvalor" runat="server" TextMode="Number"></asp:TextBox>
                 </td>
             </tr>
             <tr>
@@ -40,7 +34,7 @@
             </tr>
             <tr>
                 <td>
-                    <asp:Button ID="btnactualizar" runat="server" Text="Actualizar" OnClick="btnactualizar_Click" />
+                    <asp:Button ID="btnguardar" runat="server" Text="Guardar" OnClick="btnguardar_Click" />
                 </td>
                 <td>
                     <asp:Button ID="btnvolver" runat="server" Text="Volver" OnClick="btnvolver_Click" />
