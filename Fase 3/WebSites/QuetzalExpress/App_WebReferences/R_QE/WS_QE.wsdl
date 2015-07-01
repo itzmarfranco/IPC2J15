@@ -1,0 +1,1670 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://tempuri.org/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://tempuri.org/">
+      <s:element name="HelloWorld">
+        <s:complexType />
+      </s:element>
+      <s:element name="HelloWorldResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="HelloWorldResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="registrarSolicitud">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="nom" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="ape" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="nit" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="tel" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="dom" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="suc" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="tar" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="cor" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="con" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="registrarSolicitudResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="registrarSolicitudResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="registrarEmpleado">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="nom" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="ape" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="tel" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="dom" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="sue" type="s:double" />
+            <s:element minOccurs="0" maxOccurs="1" name="suc" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="dep" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="cor" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="con" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="registrarEmpleadoResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="registrarEmpleadoResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="actualizarCliente">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="nom" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="ape" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="nit" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="tel" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="dom" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="suc" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="tar" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="con" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="cas" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="actualizarClienteResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="actualizarClienteResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="registrarPaquete">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="pes" type="s:double" />
+            <s:element minOccurs="1" maxOccurs="1" name="pre" type="s:double" />
+            <s:element minOccurs="0" maxOccurs="1" name="cat" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="cas" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="registrarPaqueteResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="registrarPaqueteResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="registrarEstado">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="paq" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="est" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="registrarEstadoResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="registrarEstadoResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="agregarLote">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="paq" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="lot" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="agregarLoteResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="agregarLoteResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="crearLote">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="num" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="crearLoteResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="crearLoteResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="cargarCategorias">
+        <s:complexType />
+      </s:element>
+      <s:element name="cargarCategoriasResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="cargarCategoriasResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="cargarLotes">
+        <s:complexType />
+      </s:element>
+      <s:element name="cargarLotesResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="cargarLotesResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="cargarPaquetes">
+        <s:complexType />
+      </s:element>
+      <s:element name="cargarPaquetesResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="cargarPaquetesResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="cargarDepartamento">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="suc" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="dep" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="cargarDepartamentoResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="cargarDepartamentoResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="cargarPaquetesCliente">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="casilla" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="cargarPaquetesClienteResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="cargarPaquetesClienteResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="cargarEstadoPaquetesCliente">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="paquete" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="cargarEstadoPaquetesClienteResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="cargarEstadoPaquetesClienteResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="clienteExiste">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="casilla" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="clienteExisteResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="clienteExisteResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="paqueteEstaEnLote">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="paq" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="paqueteEstaEnLoteResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="paqueteEstaEnLoteResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="cargarBodega">
+        <s:complexType />
+      </s:element>
+      <s:element name="cargarBodegaResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="cargarBodegaResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="reportarPerdido">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="bod" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="reportarPerdidoResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="reportarPerdidoResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="calcularMonto">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="paq" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="calcularMontoResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="calcularMontoResult" type="s:double" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="cotizar">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="pe" type="s:double" />
+            <s:element minOccurs="1" maxOccurs="1" name="pre" type="s:double" />
+            <s:element minOccurs="1" maxOccurs="1" name="imp" type="s:double" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="cotizarResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="cotizarResult" type="s:double" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="cargarEntrega">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="cas" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="cargarEntregaResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="cargarEntregaResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="buscarPaquete">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="pre" type="s:double" />
+            <s:element minOccurs="1" maxOccurs="1" name="pes" type="s:double" />
+            <s:element minOccurs="1" maxOccurs="1" name="lot" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="buscarPaqueteResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="buscarPaqueteResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="facturar">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="cas" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="emp" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="paq" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="tot" type="s:double" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="facturarResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="facturarResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="llenarFactura">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="factura" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="llenarFacturaResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="llenarFacturaResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ultimaFactura">
+        <s:complexType />
+      </s:element>
+      <s:element name="ultimaFacturaResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="ultimaFacturaResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="modificarFactura">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="paq" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="modificarFacturaResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="modificarFacturaResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="devolverPaquete">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="paq" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="devolverPaqueteResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="devolverPaqueteResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="paqueteExiste">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="paq" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="paqueteExisteResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="paqueteExisteResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="paquetePagado">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="paq" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="paquetePagadoResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="paquetePagadoResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="llenarInfoCliente">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="dato" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="llenarInfoClienteResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="llenarInfoClienteResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="despedirEmpleado">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="id" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="despedirEmpleadoResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="despedirEmpleadoResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="actualizarEmpleado">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="id" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="sue" type="s:double" />
+            <s:element minOccurs="0" maxOccurs="1" name="suc" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="dep" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="actualizarEmpleadoResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="actualizarEmpleadoResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="actualizarEstado">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="paq" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="est" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="actualizarEstadoResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="actualizarEstadoResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="agregarCobro">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="nom" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="val" type="s:double" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="agregarCobroResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="agregarCobroResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="actualizarCobro">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="nom" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="val" type="s:double" />
+            <s:element minOccurs="1" maxOccurs="1" name="id" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="actualizarCobroResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="actualizarCobroResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="llenarCobros">
+        <s:complexType />
+      </s:element>
+      <s:element name="llenarCobrosResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="llenarCobrosResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="inhabilitarCobro">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="id" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="inhabilitarCobroResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="inhabilitarCobroResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="HelloWorldSoapIn">
+    <wsdl:part name="parameters" element="tns:HelloWorld" />
+  </wsdl:message>
+  <wsdl:message name="HelloWorldSoapOut">
+    <wsdl:part name="parameters" element="tns:HelloWorldResponse" />
+  </wsdl:message>
+  <wsdl:message name="registrarSolicitudSoapIn">
+    <wsdl:part name="parameters" element="tns:registrarSolicitud" />
+  </wsdl:message>
+  <wsdl:message name="registrarSolicitudSoapOut">
+    <wsdl:part name="parameters" element="tns:registrarSolicitudResponse" />
+  </wsdl:message>
+  <wsdl:message name="registrarEmpleadoSoapIn">
+    <wsdl:part name="parameters" element="tns:registrarEmpleado" />
+  </wsdl:message>
+  <wsdl:message name="registrarEmpleadoSoapOut">
+    <wsdl:part name="parameters" element="tns:registrarEmpleadoResponse" />
+  </wsdl:message>
+  <wsdl:message name="actualizarClienteSoapIn">
+    <wsdl:part name="parameters" element="tns:actualizarCliente" />
+  </wsdl:message>
+  <wsdl:message name="actualizarClienteSoapOut">
+    <wsdl:part name="parameters" element="tns:actualizarClienteResponse" />
+  </wsdl:message>
+  <wsdl:message name="registrarPaqueteSoapIn">
+    <wsdl:part name="parameters" element="tns:registrarPaquete" />
+  </wsdl:message>
+  <wsdl:message name="registrarPaqueteSoapOut">
+    <wsdl:part name="parameters" element="tns:registrarPaqueteResponse" />
+  </wsdl:message>
+  <wsdl:message name="registrarEstadoSoapIn">
+    <wsdl:part name="parameters" element="tns:registrarEstado" />
+  </wsdl:message>
+  <wsdl:message name="registrarEstadoSoapOut">
+    <wsdl:part name="parameters" element="tns:registrarEstadoResponse" />
+  </wsdl:message>
+  <wsdl:message name="agregarLoteSoapIn">
+    <wsdl:part name="parameters" element="tns:agregarLote" />
+  </wsdl:message>
+  <wsdl:message name="agregarLoteSoapOut">
+    <wsdl:part name="parameters" element="tns:agregarLoteResponse" />
+  </wsdl:message>
+  <wsdl:message name="crearLoteSoapIn">
+    <wsdl:part name="parameters" element="tns:crearLote" />
+  </wsdl:message>
+  <wsdl:message name="crearLoteSoapOut">
+    <wsdl:part name="parameters" element="tns:crearLoteResponse" />
+  </wsdl:message>
+  <wsdl:message name="cargarCategoriasSoapIn">
+    <wsdl:part name="parameters" element="tns:cargarCategorias" />
+  </wsdl:message>
+  <wsdl:message name="cargarCategoriasSoapOut">
+    <wsdl:part name="parameters" element="tns:cargarCategoriasResponse" />
+  </wsdl:message>
+  <wsdl:message name="cargarLotesSoapIn">
+    <wsdl:part name="parameters" element="tns:cargarLotes" />
+  </wsdl:message>
+  <wsdl:message name="cargarLotesSoapOut">
+    <wsdl:part name="parameters" element="tns:cargarLotesResponse" />
+  </wsdl:message>
+  <wsdl:message name="cargarPaquetesSoapIn">
+    <wsdl:part name="parameters" element="tns:cargarPaquetes" />
+  </wsdl:message>
+  <wsdl:message name="cargarPaquetesSoapOut">
+    <wsdl:part name="parameters" element="tns:cargarPaquetesResponse" />
+  </wsdl:message>
+  <wsdl:message name="cargarDepartamentoSoapIn">
+    <wsdl:part name="parameters" element="tns:cargarDepartamento" />
+  </wsdl:message>
+  <wsdl:message name="cargarDepartamentoSoapOut">
+    <wsdl:part name="parameters" element="tns:cargarDepartamentoResponse" />
+  </wsdl:message>
+  <wsdl:message name="cargarPaquetesClienteSoapIn">
+    <wsdl:part name="parameters" element="tns:cargarPaquetesCliente" />
+  </wsdl:message>
+  <wsdl:message name="cargarPaquetesClienteSoapOut">
+    <wsdl:part name="parameters" element="tns:cargarPaquetesClienteResponse" />
+  </wsdl:message>
+  <wsdl:message name="cargarEstadoPaquetesClienteSoapIn">
+    <wsdl:part name="parameters" element="tns:cargarEstadoPaquetesCliente" />
+  </wsdl:message>
+  <wsdl:message name="cargarEstadoPaquetesClienteSoapOut">
+    <wsdl:part name="parameters" element="tns:cargarEstadoPaquetesClienteResponse" />
+  </wsdl:message>
+  <wsdl:message name="clienteExisteSoapIn">
+    <wsdl:part name="parameters" element="tns:clienteExiste" />
+  </wsdl:message>
+  <wsdl:message name="clienteExisteSoapOut">
+    <wsdl:part name="parameters" element="tns:clienteExisteResponse" />
+  </wsdl:message>
+  <wsdl:message name="paqueteEstaEnLoteSoapIn">
+    <wsdl:part name="parameters" element="tns:paqueteEstaEnLote" />
+  </wsdl:message>
+  <wsdl:message name="paqueteEstaEnLoteSoapOut">
+    <wsdl:part name="parameters" element="tns:paqueteEstaEnLoteResponse" />
+  </wsdl:message>
+  <wsdl:message name="cargarBodegaSoapIn">
+    <wsdl:part name="parameters" element="tns:cargarBodega" />
+  </wsdl:message>
+  <wsdl:message name="cargarBodegaSoapOut">
+    <wsdl:part name="parameters" element="tns:cargarBodegaResponse" />
+  </wsdl:message>
+  <wsdl:message name="reportarPerdidoSoapIn">
+    <wsdl:part name="parameters" element="tns:reportarPerdido" />
+  </wsdl:message>
+  <wsdl:message name="reportarPerdidoSoapOut">
+    <wsdl:part name="parameters" element="tns:reportarPerdidoResponse" />
+  </wsdl:message>
+  <wsdl:message name="calcularMontoSoapIn">
+    <wsdl:part name="parameters" element="tns:calcularMonto" />
+  </wsdl:message>
+  <wsdl:message name="calcularMontoSoapOut">
+    <wsdl:part name="parameters" element="tns:calcularMontoResponse" />
+  </wsdl:message>
+  <wsdl:message name="cotizarSoapIn">
+    <wsdl:part name="parameters" element="tns:cotizar" />
+  </wsdl:message>
+  <wsdl:message name="cotizarSoapOut">
+    <wsdl:part name="parameters" element="tns:cotizarResponse" />
+  </wsdl:message>
+  <wsdl:message name="cargarEntregaSoapIn">
+    <wsdl:part name="parameters" element="tns:cargarEntrega" />
+  </wsdl:message>
+  <wsdl:message name="cargarEntregaSoapOut">
+    <wsdl:part name="parameters" element="tns:cargarEntregaResponse" />
+  </wsdl:message>
+  <wsdl:message name="buscarPaqueteSoapIn">
+    <wsdl:part name="parameters" element="tns:buscarPaquete" />
+  </wsdl:message>
+  <wsdl:message name="buscarPaqueteSoapOut">
+    <wsdl:part name="parameters" element="tns:buscarPaqueteResponse" />
+  </wsdl:message>
+  <wsdl:message name="facturarSoapIn">
+    <wsdl:part name="parameters" element="tns:facturar" />
+  </wsdl:message>
+  <wsdl:message name="facturarSoapOut">
+    <wsdl:part name="parameters" element="tns:facturarResponse" />
+  </wsdl:message>
+  <wsdl:message name="llenarFacturaSoapIn">
+    <wsdl:part name="parameters" element="tns:llenarFactura" />
+  </wsdl:message>
+  <wsdl:message name="llenarFacturaSoapOut">
+    <wsdl:part name="parameters" element="tns:llenarFacturaResponse" />
+  </wsdl:message>
+  <wsdl:message name="ultimaFacturaSoapIn">
+    <wsdl:part name="parameters" element="tns:ultimaFactura" />
+  </wsdl:message>
+  <wsdl:message name="ultimaFacturaSoapOut">
+    <wsdl:part name="parameters" element="tns:ultimaFacturaResponse" />
+  </wsdl:message>
+  <wsdl:message name="modificarFacturaSoapIn">
+    <wsdl:part name="parameters" element="tns:modificarFactura" />
+  </wsdl:message>
+  <wsdl:message name="modificarFacturaSoapOut">
+    <wsdl:part name="parameters" element="tns:modificarFacturaResponse" />
+  </wsdl:message>
+  <wsdl:message name="devolverPaqueteSoapIn">
+    <wsdl:part name="parameters" element="tns:devolverPaquete" />
+  </wsdl:message>
+  <wsdl:message name="devolverPaqueteSoapOut">
+    <wsdl:part name="parameters" element="tns:devolverPaqueteResponse" />
+  </wsdl:message>
+  <wsdl:message name="paqueteExisteSoapIn">
+    <wsdl:part name="parameters" element="tns:paqueteExiste" />
+  </wsdl:message>
+  <wsdl:message name="paqueteExisteSoapOut">
+    <wsdl:part name="parameters" element="tns:paqueteExisteResponse" />
+  </wsdl:message>
+  <wsdl:message name="paquetePagadoSoapIn">
+    <wsdl:part name="parameters" element="tns:paquetePagado" />
+  </wsdl:message>
+  <wsdl:message name="paquetePagadoSoapOut">
+    <wsdl:part name="parameters" element="tns:paquetePagadoResponse" />
+  </wsdl:message>
+  <wsdl:message name="llenarInfoClienteSoapIn">
+    <wsdl:part name="parameters" element="tns:llenarInfoCliente" />
+  </wsdl:message>
+  <wsdl:message name="llenarInfoClienteSoapOut">
+    <wsdl:part name="parameters" element="tns:llenarInfoClienteResponse" />
+  </wsdl:message>
+  <wsdl:message name="despedirEmpleadoSoapIn">
+    <wsdl:part name="parameters" element="tns:despedirEmpleado" />
+  </wsdl:message>
+  <wsdl:message name="despedirEmpleadoSoapOut">
+    <wsdl:part name="parameters" element="tns:despedirEmpleadoResponse" />
+  </wsdl:message>
+  <wsdl:message name="actualizarEmpleadoSoapIn">
+    <wsdl:part name="parameters" element="tns:actualizarEmpleado" />
+  </wsdl:message>
+  <wsdl:message name="actualizarEmpleadoSoapOut">
+    <wsdl:part name="parameters" element="tns:actualizarEmpleadoResponse" />
+  </wsdl:message>
+  <wsdl:message name="actualizarEstadoSoapIn">
+    <wsdl:part name="parameters" element="tns:actualizarEstado" />
+  </wsdl:message>
+  <wsdl:message name="actualizarEstadoSoapOut">
+    <wsdl:part name="parameters" element="tns:actualizarEstadoResponse" />
+  </wsdl:message>
+  <wsdl:message name="agregarCobroSoapIn">
+    <wsdl:part name="parameters" element="tns:agregarCobro" />
+  </wsdl:message>
+  <wsdl:message name="agregarCobroSoapOut">
+    <wsdl:part name="parameters" element="tns:agregarCobroResponse" />
+  </wsdl:message>
+  <wsdl:message name="actualizarCobroSoapIn">
+    <wsdl:part name="parameters" element="tns:actualizarCobro" />
+  </wsdl:message>
+  <wsdl:message name="actualizarCobroSoapOut">
+    <wsdl:part name="parameters" element="tns:actualizarCobroResponse" />
+  </wsdl:message>
+  <wsdl:message name="llenarCobrosSoapIn">
+    <wsdl:part name="parameters" element="tns:llenarCobros" />
+  </wsdl:message>
+  <wsdl:message name="llenarCobrosSoapOut">
+    <wsdl:part name="parameters" element="tns:llenarCobrosResponse" />
+  </wsdl:message>
+  <wsdl:message name="inhabilitarCobroSoapIn">
+    <wsdl:part name="parameters" element="tns:inhabilitarCobro" />
+  </wsdl:message>
+  <wsdl:message name="inhabilitarCobroSoapOut">
+    <wsdl:part name="parameters" element="tns:inhabilitarCobroResponse" />
+  </wsdl:message>
+  <wsdl:portType name="WS_QESoap">
+    <wsdl:operation name="HelloWorld">
+      <wsdl:input message="tns:HelloWorldSoapIn" />
+      <wsdl:output message="tns:HelloWorldSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="registrarSolicitud">
+      <wsdl:input message="tns:registrarSolicitudSoapIn" />
+      <wsdl:output message="tns:registrarSolicitudSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="registrarEmpleado">
+      <wsdl:input message="tns:registrarEmpleadoSoapIn" />
+      <wsdl:output message="tns:registrarEmpleadoSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="actualizarCliente">
+      <wsdl:input message="tns:actualizarClienteSoapIn" />
+      <wsdl:output message="tns:actualizarClienteSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="registrarPaquete">
+      <wsdl:input message="tns:registrarPaqueteSoapIn" />
+      <wsdl:output message="tns:registrarPaqueteSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="registrarEstado">
+      <wsdl:input message="tns:registrarEstadoSoapIn" />
+      <wsdl:output message="tns:registrarEstadoSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="agregarLote">
+      <wsdl:input message="tns:agregarLoteSoapIn" />
+      <wsdl:output message="tns:agregarLoteSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="crearLote">
+      <wsdl:input message="tns:crearLoteSoapIn" />
+      <wsdl:output message="tns:crearLoteSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="cargarCategorias">
+      <wsdl:input message="tns:cargarCategoriasSoapIn" />
+      <wsdl:output message="tns:cargarCategoriasSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="cargarLotes">
+      <wsdl:input message="tns:cargarLotesSoapIn" />
+      <wsdl:output message="tns:cargarLotesSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="cargarPaquetes">
+      <wsdl:input message="tns:cargarPaquetesSoapIn" />
+      <wsdl:output message="tns:cargarPaquetesSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="cargarDepartamento">
+      <wsdl:input message="tns:cargarDepartamentoSoapIn" />
+      <wsdl:output message="tns:cargarDepartamentoSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="cargarPaquetesCliente">
+      <wsdl:input message="tns:cargarPaquetesClienteSoapIn" />
+      <wsdl:output message="tns:cargarPaquetesClienteSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="cargarEstadoPaquetesCliente">
+      <wsdl:input message="tns:cargarEstadoPaquetesClienteSoapIn" />
+      <wsdl:output message="tns:cargarEstadoPaquetesClienteSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="clienteExiste">
+      <wsdl:input message="tns:clienteExisteSoapIn" />
+      <wsdl:output message="tns:clienteExisteSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="paqueteEstaEnLote">
+      <wsdl:input message="tns:paqueteEstaEnLoteSoapIn" />
+      <wsdl:output message="tns:paqueteEstaEnLoteSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="cargarBodega">
+      <wsdl:input message="tns:cargarBodegaSoapIn" />
+      <wsdl:output message="tns:cargarBodegaSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="reportarPerdido">
+      <wsdl:input message="tns:reportarPerdidoSoapIn" />
+      <wsdl:output message="tns:reportarPerdidoSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="calcularMonto">
+      <wsdl:input message="tns:calcularMontoSoapIn" />
+      <wsdl:output message="tns:calcularMontoSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="cotizar">
+      <wsdl:input message="tns:cotizarSoapIn" />
+      <wsdl:output message="tns:cotizarSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="cargarEntrega">
+      <wsdl:input message="tns:cargarEntregaSoapIn" />
+      <wsdl:output message="tns:cargarEntregaSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="buscarPaquete">
+      <wsdl:input message="tns:buscarPaqueteSoapIn" />
+      <wsdl:output message="tns:buscarPaqueteSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="facturar">
+      <wsdl:input message="tns:facturarSoapIn" />
+      <wsdl:output message="tns:facturarSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="llenarFactura">
+      <wsdl:input message="tns:llenarFacturaSoapIn" />
+      <wsdl:output message="tns:llenarFacturaSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ultimaFactura">
+      <wsdl:input message="tns:ultimaFacturaSoapIn" />
+      <wsdl:output message="tns:ultimaFacturaSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="modificarFactura">
+      <wsdl:input message="tns:modificarFacturaSoapIn" />
+      <wsdl:output message="tns:modificarFacturaSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="devolverPaquete">
+      <wsdl:input message="tns:devolverPaqueteSoapIn" />
+      <wsdl:output message="tns:devolverPaqueteSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="paqueteExiste">
+      <wsdl:input message="tns:paqueteExisteSoapIn" />
+      <wsdl:output message="tns:paqueteExisteSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="paquetePagado">
+      <wsdl:input message="tns:paquetePagadoSoapIn" />
+      <wsdl:output message="tns:paquetePagadoSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="llenarInfoCliente">
+      <wsdl:input message="tns:llenarInfoClienteSoapIn" />
+      <wsdl:output message="tns:llenarInfoClienteSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="despedirEmpleado">
+      <wsdl:input message="tns:despedirEmpleadoSoapIn" />
+      <wsdl:output message="tns:despedirEmpleadoSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="actualizarEmpleado">
+      <wsdl:input message="tns:actualizarEmpleadoSoapIn" />
+      <wsdl:output message="tns:actualizarEmpleadoSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="actualizarEstado">
+      <wsdl:input message="tns:actualizarEstadoSoapIn" />
+      <wsdl:output message="tns:actualizarEstadoSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="agregarCobro">
+      <wsdl:input message="tns:agregarCobroSoapIn" />
+      <wsdl:output message="tns:agregarCobroSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="actualizarCobro">
+      <wsdl:input message="tns:actualizarCobroSoapIn" />
+      <wsdl:output message="tns:actualizarCobroSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="llenarCobros">
+      <wsdl:input message="tns:llenarCobrosSoapIn" />
+      <wsdl:output message="tns:llenarCobrosSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="inhabilitarCobro">
+      <wsdl:input message="tns:inhabilitarCobroSoapIn" />
+      <wsdl:output message="tns:inhabilitarCobroSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="WS_QESoap" type="tns:WS_QESoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="HelloWorld">
+      <soap:operation soapAction="http://tempuri.org/HelloWorld" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="registrarSolicitud">
+      <soap:operation soapAction="http://tempuri.org/registrarSolicitud" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="registrarEmpleado">
+      <soap:operation soapAction="http://tempuri.org/registrarEmpleado" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="actualizarCliente">
+      <soap:operation soapAction="http://tempuri.org/actualizarCliente" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="registrarPaquete">
+      <soap:operation soapAction="http://tempuri.org/registrarPaquete" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="registrarEstado">
+      <soap:operation soapAction="http://tempuri.org/registrarEstado" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="agregarLote">
+      <soap:operation soapAction="http://tempuri.org/agregarLote" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="crearLote">
+      <soap:operation soapAction="http://tempuri.org/crearLote" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="cargarCategorias">
+      <soap:operation soapAction="http://tempuri.org/cargarCategorias" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="cargarLotes">
+      <soap:operation soapAction="http://tempuri.org/cargarLotes" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="cargarPaquetes">
+      <soap:operation soapAction="http://tempuri.org/cargarPaquetes" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="cargarDepartamento">
+      <soap:operation soapAction="http://tempuri.org/cargarDepartamento" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="cargarPaquetesCliente">
+      <soap:operation soapAction="http://tempuri.org/cargarPaquetesCliente" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="cargarEstadoPaquetesCliente">
+      <soap:operation soapAction="http://tempuri.org/cargarEstadoPaquetesCliente" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="clienteExiste">
+      <soap:operation soapAction="http://tempuri.org/clienteExiste" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="paqueteEstaEnLote">
+      <soap:operation soapAction="http://tempuri.org/paqueteEstaEnLote" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="cargarBodega">
+      <soap:operation soapAction="http://tempuri.org/cargarBodega" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="reportarPerdido">
+      <soap:operation soapAction="http://tempuri.org/reportarPerdido" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="calcularMonto">
+      <soap:operation soapAction="http://tempuri.org/calcularMonto" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="cotizar">
+      <soap:operation soapAction="http://tempuri.org/cotizar" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="cargarEntrega">
+      <soap:operation soapAction="http://tempuri.org/cargarEntrega" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="buscarPaquete">
+      <soap:operation soapAction="http://tempuri.org/buscarPaquete" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="facturar">
+      <soap:operation soapAction="http://tempuri.org/facturar" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="llenarFactura">
+      <soap:operation soapAction="http://tempuri.org/llenarFactura" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ultimaFactura">
+      <soap:operation soapAction="http://tempuri.org/ultimaFactura" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="modificarFactura">
+      <soap:operation soapAction="http://tempuri.org/modificarFactura" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="devolverPaquete">
+      <soap:operation soapAction="http://tempuri.org/devolverPaquete" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="paqueteExiste">
+      <soap:operation soapAction="http://tempuri.org/paqueteExiste" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="paquetePagado">
+      <soap:operation soapAction="http://tempuri.org/paquetePagado" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="llenarInfoCliente">
+      <soap:operation soapAction="http://tempuri.org/llenarInfoCliente" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="despedirEmpleado">
+      <soap:operation soapAction="http://tempuri.org/despedirEmpleado" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="actualizarEmpleado">
+      <soap:operation soapAction="http://tempuri.org/actualizarEmpleado" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="actualizarEstado">
+      <soap:operation soapAction="http://tempuri.org/actualizarEstado" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="agregarCobro">
+      <soap:operation soapAction="http://tempuri.org/agregarCobro" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="actualizarCobro">
+      <soap:operation soapAction="http://tempuri.org/actualizarCobro" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="llenarCobros">
+      <soap:operation soapAction="http://tempuri.org/llenarCobros" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="inhabilitarCobro">
+      <soap:operation soapAction="http://tempuri.org/inhabilitarCobro" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="WS_QESoap12" type="tns:WS_QESoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="HelloWorld">
+      <soap12:operation soapAction="http://tempuri.org/HelloWorld" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="registrarSolicitud">
+      <soap12:operation soapAction="http://tempuri.org/registrarSolicitud" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="registrarEmpleado">
+      <soap12:operation soapAction="http://tempuri.org/registrarEmpleado" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="actualizarCliente">
+      <soap12:operation soapAction="http://tempuri.org/actualizarCliente" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="registrarPaquete">
+      <soap12:operation soapAction="http://tempuri.org/registrarPaquete" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="registrarEstado">
+      <soap12:operation soapAction="http://tempuri.org/registrarEstado" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="agregarLote">
+      <soap12:operation soapAction="http://tempuri.org/agregarLote" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="crearLote">
+      <soap12:operation soapAction="http://tempuri.org/crearLote" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="cargarCategorias">
+      <soap12:operation soapAction="http://tempuri.org/cargarCategorias" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="cargarLotes">
+      <soap12:operation soapAction="http://tempuri.org/cargarLotes" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="cargarPaquetes">
+      <soap12:operation soapAction="http://tempuri.org/cargarPaquetes" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="cargarDepartamento">
+      <soap12:operation soapAction="http://tempuri.org/cargarDepartamento" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="cargarPaquetesCliente">
+      <soap12:operation soapAction="http://tempuri.org/cargarPaquetesCliente" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="cargarEstadoPaquetesCliente">
+      <soap12:operation soapAction="http://tempuri.org/cargarEstadoPaquetesCliente" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="clienteExiste">
+      <soap12:operation soapAction="http://tempuri.org/clienteExiste" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="paqueteEstaEnLote">
+      <soap12:operation soapAction="http://tempuri.org/paqueteEstaEnLote" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="cargarBodega">
+      <soap12:operation soapAction="http://tempuri.org/cargarBodega" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="reportarPerdido">
+      <soap12:operation soapAction="http://tempuri.org/reportarPerdido" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="calcularMonto">
+      <soap12:operation soapAction="http://tempuri.org/calcularMonto" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="cotizar">
+      <soap12:operation soapAction="http://tempuri.org/cotizar" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="cargarEntrega">
+      <soap12:operation soapAction="http://tempuri.org/cargarEntrega" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="buscarPaquete">
+      <soap12:operation soapAction="http://tempuri.org/buscarPaquete" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="facturar">
+      <soap12:operation soapAction="http://tempuri.org/facturar" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="llenarFactura">
+      <soap12:operation soapAction="http://tempuri.org/llenarFactura" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ultimaFactura">
+      <soap12:operation soapAction="http://tempuri.org/ultimaFactura" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="modificarFactura">
+      <soap12:operation soapAction="http://tempuri.org/modificarFactura" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="devolverPaquete">
+      <soap12:operation soapAction="http://tempuri.org/devolverPaquete" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="paqueteExiste">
+      <soap12:operation soapAction="http://tempuri.org/paqueteExiste" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="paquetePagado">
+      <soap12:operation soapAction="http://tempuri.org/paquetePagado" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="llenarInfoCliente">
+      <soap12:operation soapAction="http://tempuri.org/llenarInfoCliente" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="despedirEmpleado">
+      <soap12:operation soapAction="http://tempuri.org/despedirEmpleado" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="actualizarEmpleado">
+      <soap12:operation soapAction="http://tempuri.org/actualizarEmpleado" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="actualizarEstado">
+      <soap12:operation soapAction="http://tempuri.org/actualizarEstado" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="agregarCobro">
+      <soap12:operation soapAction="http://tempuri.org/agregarCobro" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="actualizarCobro">
+      <soap12:operation soapAction="http://tempuri.org/actualizarCobro" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="llenarCobros">
+      <soap12:operation soapAction="http://tempuri.org/llenarCobros" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="inhabilitarCobro">
+      <soap12:operation soapAction="http://tempuri.org/inhabilitarCobro" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="WS_QE">
+    <wsdl:port name="WS_QESoap" binding="tns:WS_QESoap">
+      <soap:address location="http://localhost:1051/WS_QE.asmx" />
+    </wsdl:port>
+    <wsdl:port name="WS_QESoap12" binding="tns:WS_QESoap12">
+      <soap12:address location="http://localhost:1051/WS_QE.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>
