@@ -41,6 +41,23 @@
                 </td>
             </tr>
         </table>
+        <table>
+            <tr>
+                <td>
+                    <asp:FileUpload ID="fuimp" runat="server" />
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <asp:Label ID="lblerror2" runat="server" Text=""></asp:Label>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <asp:Button ID="btncargar" runat="server" Text="Cargar" OnClick="btncargar_Click" />
+                </td>
+            </tr>
+        </table>
     </div>
     </form>
 </body>

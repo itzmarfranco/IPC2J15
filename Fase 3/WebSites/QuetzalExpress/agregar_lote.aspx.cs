@@ -10,15 +10,21 @@ public partial class agregar_lote : System.Web.UI.Page
     protected void Page_Load(object sender, EventArgs e)
     {
         R_QE.WS_QE servicio = new R_QE.WS_QE();
-        ddllotes.DataSource = servicio.cargarLotes();
-        ddllotes.DataTextField = "id";
-        ddllotes.DataValueField = "id";
-        ddllotes.DataBind();
+        if (!Page.IsPostBack)
+        {
+            ddllotes.DataSource = servicio.cargarLotes();
+            ddllotes.DataTextField = "id";
+            ddllotes.DataValueField = "id";
+            ddllotes.DataBind();
 
-        ddlpaquetes.DataSource = servicio.cargarPaquetes();
+            ddlpaquetes.DataSource = servicio.cargarPaquetes();
         ddlpaquetes.DataTextField = "id";
         ddlpaquetes.DataValueField = "id";
         ddlpaquetes.DataBind();
+        }
+        
+
+        
     }
     protected void btnvolver_Click(object sender, EventArgs e)
     {

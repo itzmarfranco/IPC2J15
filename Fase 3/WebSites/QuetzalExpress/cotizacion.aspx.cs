@@ -10,10 +10,13 @@ public partial class cotizacion : System.Web.UI.Page
     protected void Page_Load(object sender, EventArgs e)
     {
         R_QE.WS_QE servicio = new R_QE.WS_QE();
-        ddlcategorias.DataSource = servicio.cargarCategorias();
-        ddlcategorias.DataTextField = "nombre";
-        ddlcategorias.DataValueField = "valor";
-        ddlcategorias.DataBind();
+        if (!Page.IsPostBack)
+        {
+            ddlcategorias.DataSource = servicio.cargarCategorias();
+            ddlcategorias.DataTextField = "nombre";
+            ddlcategorias.DataValueField = "valor";
+            ddlcategorias.DataBind();
+        }        
     }
     protected void btncalcular_Click(object sender, EventArgs e)
     {

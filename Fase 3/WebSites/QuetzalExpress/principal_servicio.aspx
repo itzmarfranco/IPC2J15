@@ -13,6 +13,9 @@
     <table>
         <tr>
             <td>
+                <asp:HyperLink ID="HyperLink5" runat="server" NavigateUrl="~/aprobar_cliente.aspx">Aprobar cliente</asp:HyperLink>
+            </td>
+            <td>
                 <asp:HyperLink ID="HyperLink1" runat="server" NavigateUrl="~/entregar_paquete.aspx">Entrega de paquetes</asp:HyperLink>
             </td>
             <td>

@@ -1,0 +1,6 @@
+1,Accesorio de Telefonia,0.15
+2,Accesorio Deportivo,0.10
+3,Articulos de Cuero,0.15
+4,Videocintas,0.10
+5,Videojuegos Blu-Ray,0.15
+6,Zapatos,0.15

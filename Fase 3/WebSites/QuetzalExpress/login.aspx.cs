@@ -47,23 +47,23 @@ public partial class login : System.Web.UI.Page
                 String departamento = conexion.obtenerCampoEmpleado("departamento", correo);
                 String tipo = conexion.obtenerCampoEmpleado("tipo", correo);
                 Session["empleado"] = new empleado(id, departamento, nombre, apellido, sueldo, sucursal, correo, contra, tipo);
-                if (conexion.obtenerCampoEmpleado("departamento", correo) == "Registro" && conexion.obtenerCampoEmpleado("tipo", correo) == "empleado")
+                if (conexion.obtenerDeptoEmpleado(correo) == "Registro" && conexion.obtenerCampoEmpleado("tipo", correo) == "empleado")
                 {
                     Response.Redirect("/principal_registro.aspx");
                 }
-                if (conexion.obtenerCampoEmpleado("departamento", correo) == "Servicio al Cliente" && conexion.obtenerCampoEmpleado("tipo", correo) == "empleado")
+                if (conexion.obtenerDeptoEmpleado(correo) == "Servicio al Cliente" && conexion.obtenerCampoEmpleado("tipo", correo) == "empleado")
                 {
                     Response.Redirect("/principal_servicio.aspx");
                 }
-                if (conexion.obtenerCampoEmpleado("departamento", correo) == "Bodega" && conexion.obtenerCampoEmpleado("tipo", correo) == "empleado")
+                if (conexion.obtenerDeptoEmpleado(correo) == "Bodega" && conexion.obtenerCampoEmpleado("tipo", correo) == "empleado")
                 {
                     Response.Redirect("/principal_bodega.aspx");
                 }
-                if (conexion.obtenerCampoEmpleado("tipo", correo) == "Director")
+                if (conexion.obtenerDeptoEmpleado(correo) == "Director")
                 {
                     Response.Redirect("/principal_director.aspx");
                 }
-                if (conexion.obtenerCampoEmpleado("tipo", correo) == "Administrador")
+                if (conexion.obtenerDeptoEmpleado(correo) == "Administrador")
                 {
                     Response.Redirect("/principal_admin.aspx");
                 }

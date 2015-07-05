@@ -30,7 +30,15 @@ public class WS_QE : System.Web.Services.WebService {
     public Boolean registrarSolicitud(String nom, String ape, String nit, int tel, String dom, String suc, String tar, String cor, String con)
     {
         Boolean exito;
-        String query = string.Format("INSERT INTO SOLICITUD VALUES ('{0}', '{1}', '{2}', {3}, '{4}', '{5}', '{6}', '{7}', '{8}')", nom, ape, nit, tel, dom, suc, tar, cor, con);
+        String query = string.Format("INSERT INTO SOLICITUD VALUES ('{0}', '{1}', '{2}', {3}, '{4}', '{5}', '{6}', '{7}', '{8}', 'pendiente')", nom, ape, nit, tel, dom, suc, tar, cor, con);
+        exito = conexion.ejecutar2(query);
+        return exito;
+    }
+    [WebMethod]
+    public Boolean registrarCliente(int cas, int sol, String nom, String ape, String nit, int tel, String dom, String suc, String tar, String cor, String con)
+    {
+        Boolean exito;
+        String query = string.Format("INSERT INTO CLIENTE VALUES ({0}, {1}, '{2}', '{3}', '{4}', {5}, '{6}', '{7}', '{8}', '{9}', '{10}'; UPDATE SOLICITUD SET estado = 'aprobada' WHERE id = {11})", cas, sol,  nom, ape, nit, tel, dom, suc, tar, cor, con, cas);
         exito = conexion.ejecutar2(query);
         return exito;
     }
@@ -54,7 +62,7 @@ public class WS_QE : System.Web.Services.WebService {
     public Boolean registrarPaquete(double pes, double pre, String cat, int cas)
     {
         Boolean exito = false;
-        String query1 = string.Format("INSERT INTO PAQUETE VALUES ({0}, {1}, '{2}', {3})", pes, pre, cat, cas);
+        String query1 = string.Format("INSERT INTO PAQUETE VALUES ({0}, {1}, '{2}', {3}, NULL)", pes, pre, cat, cas);
         Boolean exito1 = conexion.ejecutar2(query1);
         String query2 = string.Format("INSERT INTO ESTADO VALUES ((SELECT MAX(id) FROM PAQUETE), (SELECT GETDATE()), 'Recibido')");
         Boolean exito2 = conexion.ejecutar2(query2);
@@ -63,6 +71,19 @@ public class WS_QE : System.Web.Services.WebService {
             exito = true;
         }
         return exito;
+    }
+    [WebMethod]
+    public DataSet cargarSolicitudes()
+    {
+        conexion c = new conexion();
+        String query = string.Format("SELECT * FROM SOLICITUD WHERE estado = 'pendiente'");
+        SqlCommand sqlcmd = new SqlCommand(query, c.obtenerConexion());
+        c.abrir();
+        SqlDataAdapter sqlda = new SqlDataAdapter(sqlcmd);
+        DataSet ds = new DataSet();
+        sqlda.Fill(ds);
+        c.cerrar();
+        return ds;
     }
     [WebMethod]
     public Boolean registrarEstado(int paq, String est)
@@ -142,7 +163,20 @@ public class WS_QE : System.Web.Services.WebService {
     public DataSet cargarPaquetesCliente(int casilla)
     {
         conexion c = new conexion();
-        String query = string.Format("SELECT PAQUETE.id AS 'ID', PAQUETE.categoria AS 'Categoría' FROM PAQUETE WHERE casilla = {0}", casilla);
+        String query = string.Format("SELECT PAQUETE.id AS 'ID' FROM PAQUETE WHERE casilla = {0}", casilla);
+        SqlCommand cmd = new SqlCommand(query, c.obtenerConexion());
+        c.abrir();
+        SqlDataAdapter da = new SqlDataAdapter(cmd);
+        DataSet ds = new DataSet();
+        da.Fill(ds);
+        c.cerrar();
+        return ds;
+    }
+    [WebMethod]
+    public DataSet cargarPaqueteCliente(int paq)
+    {
+        conexion c = new conexion();
+        String query = string.Format("SELECT ESTADO.nombre, PAQUETE.precio, PAQUETE.peso, (SELECT IMPUESTO.nombre FROM IMPUESTO WHERE IMPUESTO.id = PAQUETE.categoria) AS 'Categoria' FROM ESTADO, PAQUETE WHERE fecha = (SELECT MAX(ESTADO.fecha) FROM ESTADO WHERE ESTADO.paquete = {0}) AND PAQUETE.id = {0}", paq);
         SqlCommand cmd = new SqlCommand(query, c.obtenerConexion());
         c.abrir();
         SqlDataAdapter da = new SqlDataAdapter(cmd);
@@ -232,50 +266,12 @@ public class WS_QE : System.Web.Services.WebService {
         Double cl = Convert.ToDouble(conexion.ejecutar3(query2));
         Double envio = pe * cl;      
         Double importacion = pre * imp;
-        String query6 = string.Format("SELECT valor FROM COBRO WHERE nombre = 'Comisión'");
+        String query6 = string.Format("SELECT valor FROM COBRO WHERE nombre = 'Comision'");
         Double comi = Convert.ToDouble(conexion.ejecutar3(query6));
         Double comision = comi * (envio + importacion);
         monto = envio + importacion + comision;
         return monto;
     }
-    /*[WebMethod]
-    private static DataTable GetDataTabletFromCSVFile(string csv_file_path)
-    {
-        DataTable csvData = new DataTable();
-        try
-        {
-            using (TextFieldParser csvReader = new TextFieldParser(csv_file_path))
-            {
-                csvReader.SetDelimiters(new string[] { "," });
-                csvReader.HasFieldsEnclosedInQuotes = true;
-                //read column names
-                string[] colFields = csvReader.ReadFields();
-                foreach (string column in colFields)
-                {
-                    DataColumn datecolumn = new DataColumn(column);
-                    datecolumn.AllowDBNull = true;
-                    csvData.Columns.Add(datecolumn);
-                }
-                while (!csvReader.EndOfData)
-                {
-                    string[] fieldData = csvReader.ReadFields();
-                    //Making empty value as null
-                    for (int i = 0; i < fieldData.Length; i++)
-                    {
-                        if (fieldData[i] == "")
-                        {
-                            fieldData[i] = null;
-                        }
-                    }
-                    csvData.Rows.Add(fieldData);
-                }
-            }
-        }
-        catch (Exception ex)
-        {
-        }
-        return csvData;
-    }*/
     [WebMethod]
     public DataSet cargarEntrega(int cas)
     {
@@ -429,6 +425,22 @@ public class WS_QE : System.Web.Services.WebService {
     {
         Boolean exito = false;
         String query = string.Format("UPDATE COBRO SET estado = 'inhabilitado' WHERE id = {0}", id);
+        exito = conexion.ejecutar2(query);
+        return exito;
+    }
+    [WebMethod]
+    public Boolean cargarImpuestoCSV(String pat)
+    {
+        Boolean exito = false;
+        String query = string.Format("BULK INSERT IMPUESTO FROM '{0}' WITH (FIELDTERMINATOR = ',', ROWTERMINATOR = '\n')", pat);
+        exito = conexion.ejecutar2(query);
+        return exito;
+    }
+    [WebMethod]
+    public Boolean guardarImagen(int id, String pat)
+    {
+        Boolean exito = false;
+        String query = string.Format("UPDATE PAQUETE SET imagen = '{0}' WHERE id = {1}", pat, id);
         exito = conexion.ejecutar2(query);
         return exito;
     }

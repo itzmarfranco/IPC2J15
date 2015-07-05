@@ -10,10 +10,14 @@ public partial class registrar_paquete : System.Web.UI.Page
     protected void Page_Load(object sender, EventArgs e)
     {
         R_QE.WS_QE servicio = new R_QE.WS_QE();
-        ddlcategorias.DataSource = servicio.cargarCategorias();
-        ddlcategorias.DataTextField = "nombre";
-        ddlcategorias.DataValueField = "nombre";
-        ddlcategorias.DataBind();
+        if (!Page.IsPostBack)
+        {
+            ddlcategorias.DataSource = servicio.cargarCategorias();
+            ddlcategorias.DataTextField = "nombre";
+            ddlcategorias.DataValueField = "id";
+            ddlcategorias.DataBind();
+        }
+        
     }
     protected void btnregistrar_Click(object sender, EventArgs e)
     {
@@ -26,10 +30,18 @@ public partial class registrar_paquete : System.Web.UI.Page
         Double precio;
         int casilla;
 
-        if (pe != "" && pr != "" && ca != "" && cat != "")
+        if (pe != "" && ca != "" && cat != "")
         {
+            if (pr != "")
+            {
+                precio = Convert.ToDouble(pr);
+            }
+            else
+            {
+                precio = 0;
+            }
             peso = Convert.ToDouble(pe);
-            precio = Convert.ToDouble(pr);
+            
             casilla = Convert.ToInt32(ca);            
             R_QE.WS_QE servicio = new R_QE.WS_QE();
             if (servicio.clienteExiste(casilla))

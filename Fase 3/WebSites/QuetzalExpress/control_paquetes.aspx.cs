@@ -10,10 +10,14 @@ public partial class Control_de_paquetes : System.Web.UI.Page
     protected void Page_Load(object sender, EventArgs e)
     {
         R_QE.WS_QE servicio = new R_QE.WS_QE();
-        ddlpaquetes.DataSource = servicio.cargarPaquetes();
-        ddlpaquetes.DataTextField = "id";
-        ddlpaquetes.DataValueField = "id";
-        ddlpaquetes.DataBind();
+        if (!Page.IsPostBack)
+        {
+            ddlpaquetes.DataSource = servicio.cargarPaquetes();
+            ddlpaquetes.DataTextField = "id";
+            ddlpaquetes.DataValueField = "id";
+            ddlpaquetes.DataBind();
+        }
+        
     }
     protected void btnvolver_Click(object sender, EventArgs e)
     {

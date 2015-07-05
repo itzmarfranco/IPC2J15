@@ -10,7 +10,7 @@ public class conexion
 
     public conexion()
     {
-        c = new SqlConnection("Data Source = ITZMARWIN7-PC; Initial Catalog = QuetzalExpress; Integrated Security = True");
+        c = new SqlConnection("Data Source = ITZMARWIN7-PC; Initial Catalog = Qu3tzal3xpr3ss; Integrated Security = True");
     }    
     public SqlConnection obtenerConexion()
     {
@@ -147,6 +147,13 @@ public class conexion
     {
         String valor = "";
         String query = string.Format("SELECT {0} FROM EMPLEADO WHERE correo = '{1}'", campo, correo);
+        valor = conexion.ejecutar3(query);
+        return valor;
+    }
+    public static String obtenerDeptoEmpleado(String correo)
+    {
+        String valor = "";
+        String query = string.Format("SELECT dep.nombre FROM DEPARTAMENTO dep, ASIGNACION_DEPARTAMENTO asig, EMPLEADO emp WHERE dep.id = asig.departamento AND emp.id = asig.id AND emp.correo = '{0}'", correo);
         valor = conexion.ejecutar3(query);
         return valor;
     }

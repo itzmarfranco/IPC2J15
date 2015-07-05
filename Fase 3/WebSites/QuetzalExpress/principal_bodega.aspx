@@ -18,6 +18,9 @@
                 <td>
                     <asp:HyperLink ID="HyperLink2" runat="server" NavigateUrl="~/principal.aspx">Salir</asp:HyperLink>
                 </td>
+                <td>
+                    <asp:HyperLink ID="HyperLink3" runat="server" NavigateUrl="~/agregar_precio.aspx">Salir</asp:HyperLink>
+                </td>
             </tr>
         </table>
     </div>

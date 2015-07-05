@@ -60,12 +60,11 @@
             </tr>
             <tr>
                 <td>
-                    Sucursal de preferencia:
+                    Sucursal de preferencia*:
                 </td>
                 <td>
                     <asp:DropDownList ID="ddlsucursales" runat="server">
                         <asp:ListItem>Ninguna</asp:ListItem>
-                        <asp:ListItem>Luego</asp:ListItem>
                     </asp:DropDownList>
                 </td>
             </tr>

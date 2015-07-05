@@ -34,4 +34,35 @@ public partial class agregar_cobro : System.Web.UI.Page
             }
         }
     }
+    protected void btncargar_Click(object sender, EventArgs e)
+    {
+        if (fuimp.HasFile)
+        {
+            fuimp.SaveAs(Server.MapPath("~/csv/") + fuimp.FileName);
+            Response.Write("Agregado");
+        }
+        else
+        {
+            Response.Write("No Agregado");
+        }
+
+        String path = Server.MapPath("\\csv\\" + fuimp.FileName);
+        R_QE.WS_QE servicio = new R_QE.WS_QE();
+        try
+        {
+            Boolean exito = servicio.cargarImpuestoCSV(path);
+            if (exito)
+            {
+                lblerror2.Text = /*"Carga exitosa"*/path;
+            }
+            else
+            {
+                lblerror2.Text = "No se pudo cargar";
+            }
+        }
+        catch (Exception)
+        {
+            throw;
+        } 
+    }
 }
