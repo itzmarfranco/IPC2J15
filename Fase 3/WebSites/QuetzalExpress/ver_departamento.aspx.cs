@@ -11,7 +11,7 @@ public partial class ver_departamento : System.Web.UI.Page
     {
         R_QE.WS_QE servicio = new R_QE.WS_QE();
         empleado emp = (empleado)Session["empleado"];
-        gvdepartamento.DataSource = servicio.cargarDepartamento(emp.getSucursal(), emp.getDepto());
+        gvdepartamento.DataSource = servicio.cargarDepartamento(emp.getDepto());
         gvdepartamento.DataBind();
         ta.Visible = false;
     }
@@ -19,9 +19,16 @@ public partial class ver_departamento : System.Web.UI.Page
     {
         R_QE.WS_QE servicio = new R_QE.WS_QE();
         int index = Convert.ToInt32(e.CommandArgument);
-        int id = Convert.ToInt32(gvdepartamento.Rows[index].Cells[2].Text);
+        int id = Convert.ToInt32(gvdepartamento.Rows[index].Cells[3].Text);
+        if (e.CommandName =="ver")
+        {
+            his.Visible = true;
+            gvhistorial.DataSource = servicio.historialEmpleado(id);
+            gvhistorial.DataBind();
+        }
         if (e.CommandName == "despedir")
         {
+            his.Visible = false;
             Boolean exito = servicio.despedirEmpleado(id);
             if (exito)
             {
@@ -31,6 +38,7 @@ public partial class ver_departamento : System.Web.UI.Page
         }
         if (e.CommandName == "modificar")
         {
+            his.Visible = false;
             lblid.Text = gvdepartamento.Rows[index].Cells[2].Text;
             txtsueldo.Text = gvdepartamento.Rows[index].Cells[5].Text;
             txtsucursal.Text = gvdepartamento.Rows[index].Cells[6].Text;

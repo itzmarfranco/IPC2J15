@@ -43,10 +43,9 @@ public partial class login : System.Web.UI.Page
                 String nombre = conexion.obtenerCampoEmpleado("nombre", correo);
                 String apellido = conexion.obtenerCampoEmpleado("apellido", correo);
                 double sueldo = Convert.ToDouble(conexion.obtenerCampoEmpleado("sueldo", correo));
-                String sucursal = conexion.obtenerCampoEmpleado("sucursal", correo);
-                String departamento = conexion.obtenerCampoEmpleado("departamento", correo);
+                String departamento = conexion.obtenerDeptoEmpleado(correo);
                 String tipo = conexion.obtenerCampoEmpleado("tipo", correo);
-                Session["empleado"] = new empleado(id, departamento, nombre, apellido, sueldo, sucursal, correo, contra, tipo);
+                Session["empleado"] = new empleado(id, departamento, nombre, apellido, sueldo, correo, contra, tipo);
                 if (conexion.obtenerDeptoEmpleado(correo) == "Registro" && conexion.obtenerCampoEmpleado("tipo", correo) == "empleado")
                 {
                     Response.Redirect("/principal_registro.aspx");
@@ -59,14 +58,31 @@ public partial class login : System.Web.UI.Page
                 {
                     Response.Redirect("/principal_bodega.aspx");
                 }
-                if (conexion.obtenerDeptoEmpleado(correo) == "Director")
+                if (conexion.obtenerDeptoEmpleado(correo) == "Registro" && conexion.obtenerCampoEmpleado("tipo", correo) == "director")
                 {
                     Response.Redirect("/principal_director.aspx");
                 }
-                if (conexion.obtenerDeptoEmpleado(correo) == "Administrador")
+                if (conexion.obtenerDeptoEmpleado(correo) == "Servicio al Cliente" && conexion.obtenerCampoEmpleado("tipo", correo) == "director")
+                {
+                    Response.Redirect("/principal_director.aspx");
+                }
+                if (conexion.obtenerDeptoEmpleado(correo) == "Bodega" && conexion.obtenerCampoEmpleado("tipo", correo) == "director")
+                {
+                    Response.Redirect("/principal_director.aspx");
+                }
+                if (conexion.obtenerDeptoEmpleado(correo) == "Registro" && conexion.obtenerCampoEmpleado("tipo", correo) == "administrador")
                 {
                     Response.Redirect("/principal_admin.aspx");
                 }
+                
+                /*if (conexion.obtenerDeptoEmpleado(correo) == "director")
+                {
+                    Response.Redirect("/principal_director.aspx");
+                }
+                if (conexion.obtenerDeptoEmpleado(correo) == "administrador")
+                {
+                    Response.Redirect("/principal_admin.aspx");
+                }*/
             }
             else
             {

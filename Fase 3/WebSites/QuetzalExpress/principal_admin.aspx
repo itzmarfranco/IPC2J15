@@ -16,6 +16,9 @@
                     <asp:HyperLink ID="HyperLink1" runat="server" NavigateUrl="~/cobros.aspx">Cobros</asp:HyperLink>
                 </td>
                 <td>
+                    <asp:HyperLink ID="HyperLink3" runat="server" NavigateUrl="~/reportes.aspx">Reportes</asp:HyperLink>
+                </td>
+                <td>
                     <asp:HyperLink ID="HyperLink2" runat="server" NavigateUrl="~/principal.aspx">Salir</asp:HyperLink>
                 </td>
             </tr>

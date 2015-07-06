@@ -59,10 +59,10 @@ public class WS_QE : System.Web.Services.WebService {
         return exito;
     }
     [WebMethod]
-    public Boolean registrarPaquete(double pes, double pre, String cat, int cas)
+    public Boolean registrarPaquete(double pes, double pre, String cat, int cas, String est)
     {
         Boolean exito = false;
-        String query1 = string.Format("INSERT INTO PAQUETE VALUES ({0}, {1}, '{2}', {3}, NULL)", pes, pre, cat, cas);
+        String query1 = string.Format("INSERT INTO PAQUETE VALUES ({0}, {1}, '{2}', {3}, NULL, '{4}')", pes, pre, cat, cas, est);
         Boolean exito1 = conexion.ejecutar2(query1);
         String query2 = string.Format("INSERT INTO ESTADO VALUES ((SELECT MAX(id) FROM PAQUETE), (SELECT GETDATE()), 'Recibido')");
         Boolean exito2 = conexion.ejecutar2(query2);
@@ -147,10 +147,22 @@ public class WS_QE : System.Web.Services.WebService {
         return ds;
     }
     [WebMethod]
-    public DataSet cargarDepartamento(String suc, String dep)
+    public DataSet cargarPaquetesBodega()
     {
         conexion c = new conexion();
-        String query = string.Format("SELECT id AS 'ID', nombre AS 'Nombre', apellido AS 'Apellido', sueldo AS 'Sueldo', sucursal AS 'Sucursal', departamento AS 'Departamento' FROM EMPLEADO WHERE sucursal = '{0}' AND departamento = '{1}' AND tipo != 'Director'", suc, dep);
+        SqlCommand sqlcmd = new SqlCommand("SELECT imagen FROM PAQUETE", c.obtenerConexion());
+        c.abrir();
+        SqlDataAdapter sqlda = new SqlDataAdapter(sqlcmd);
+        DataSet ds = new DataSet();
+        sqlda.Fill(ds);
+        c.cerrar();
+        return ds;
+    }
+    [WebMethod]
+    public DataSet cargarDepartamento(String dep)
+    {
+        conexion c = new conexion();
+        String query = string.Format("SELECT emp.id AS 'ID', emp.nombre AS 'Nombre', emp.apellido AS 'Apellido', (SELECT sueldo FROM ASIGNACION_DEPARTAMENTO WHERE empleado = emp.id) AS 'Sueldo', (SELECT nombre FROM DEPARTAMENTO WHERE id = (SELECT ad.departamento FROM ASIGNACION_DEPARTAMENTO WHERE empleado = emp.id)) AS 'Departamento' FROM EMPLEADO emp, ASIGNACION_DEPARTAMENTO ad WHERE emp.id = ad.empleado AND (SELECT nombre FROM DEPARTAMENTO WHERE id =  ad.departamento) = '{0}' AND tipo = 'empleado'", dep);
         SqlCommand sqlcmd = new SqlCommand(query, c.obtenerConexion());
         c.abrir();
         SqlDataAdapter sqlda = new SqlDataAdapter(sqlcmd);
@@ -163,7 +175,7 @@ public class WS_QE : System.Web.Services.WebService {
     public DataSet cargarPaquetesCliente(int casilla)
     {
         conexion c = new conexion();
-        String query = string.Format("SELECT PAQUETE.id AS 'ID' FROM PAQUETE WHERE casilla = {0}", casilla);
+        String query = string.Format("SELECT PAQUETE.id AS 'ID', PAQUETE.estado AS 'Estado de precio' FROM PAQUETE WHERE casilla = {0}", casilla);
         SqlCommand cmd = new SqlCommand(query, c.obtenerConexion());
         c.abrir();
         SqlDataAdapter da = new SqlDataAdapter(cmd);
@@ -347,6 +359,30 @@ public class WS_QE : System.Web.Services.WebService {
         return exito;
     }
     [WebMethod]
+    public Boolean actualizarPrecio(int paq, Double pre)
+    {
+        Boolean exito = false;
+        String query = string.Format("UPDATE PAQUETE SET precio = {0}, estado = 'pendiente' WHERE id = {1}", pre, paq);
+        exito = conexion.ejecutar2(query);
+        return exito;
+    }
+    [WebMethod]
+    public Boolean aprobarPrecio(int paq, Double pre)
+    {
+        Boolean exito = false;
+        String query = string.Format("UPDATE PAQUETE SET precio = {0}, imagen = NULL, estado = 'aprobado' WHERE id = {1}", pre, paq);
+        exito = conexion.ejecutar2(query);
+        return exito;
+    }
+    [WebMethod]
+    public Boolean rechazarPrecio(int paq)
+    {
+        Boolean exito = false;
+        String query = string.Format("UPDATE PAQUETE SET precio = 0, estado = 'pendiente' WHERE id = {0}", paq);
+        exito = conexion.ejecutar2(query);
+        return exito;
+    }
+    [WebMethod]
     public Boolean paquetePagado(int paq)
     {
         Boolean exito = false;
@@ -443,5 +479,44 @@ public class WS_QE : System.Web.Services.WebService {
         String query = string.Format("UPDATE PAQUETE SET imagen = '{0}' WHERE id = {1}", pat, id);
         exito = conexion.ejecutar2(query);
         return exito;
+    }
+    [WebMethod]
+    public DataSet historialEmpleado(int id)
+    {
+        conexion c = new conexion();
+        String query = string.Format("SELECT empleado AS 'Empleado', sueldo AS 'Sueldo', departamento AS 'Departamento', MAX(fecha) AS 'Fecha de modificación' FROM ASIGNACION_DEPARTAMENTO WHERE empleado = {0} GROUP BY empleado, sueldo, departamento", id);
+        SqlCommand sqlcmd = new SqlCommand(query, c.obtenerConexion());
+        c.abrir();
+        SqlDataAdapter sqlda = new SqlDataAdapter(sqlcmd);
+        DataSet ds = new DataSet();
+        sqlda.Fill(ds);
+        c.cerrar();
+        return ds;
+    }
+    [WebMethod]
+    public DataSet reporte1()
+    {
+        conexion c = new conexion();
+        String query = string.Format("SELECT (SELECT imp.nombre FROM IMPUESTO imp WHERE imp.id = paq.categoria) AS 'Categoria', (SELECT COUNT(est.paquete) FROM ESTADO est WHERE est.paquete = paq.id AND est.nombre = 'Recibido') AS 'Paquetes recibidos', (SELECT COUNT(est.paquete) FROM ESTADO est WHERE est.paquete = paq.id AND est.nombre = 'Perdido') AS 'Paquetes perdidos', (SELECT COUNT(est.paquete) FROM ESTADO est WHERE est.paquete = paq.id AND est.nombre = 'Entregado') AS 'Paquetes entregados' FROM PAQUETE paq, IMPUESTO imp WHERE paq.categoria = imp.id");
+        SqlCommand sqlcmd = new SqlCommand(query, c.obtenerConexion());
+        c.abrir();
+        SqlDataAdapter sqlda = new SqlDataAdapter(sqlcmd);
+        DataSet ds = new DataSet();
+        sqlda.Fill(ds);
+        c.cerrar();
+        return ds;
+    }
+    [WebMethod]
+    public DataSet reporte1_2()
+    {
+        conexion c = new conexion();
+        String query = string.Format("SELECT (SELECT valor FROM IMPUESTO WHERE id = paq.categoria)*SUM(paq.precio) AS 'Suma de impuestos', (SELECT valor FROM COBRO WHERE nombre = 'Libra')*SUM(paq.peso) AS 'Suma de pesos' FROM PAQUETE paq GROUP BY paq.categoria");
+        SqlCommand sqlcmd = new SqlCommand(query, c.obtenerConexion());
+        c.abrir();
+        SqlDataAdapter sqlda = new SqlDataAdapter(sqlcmd);
+        DataSet ds = new DataSet();
+        sqlda.Fill(ds);
+        c.cerrar();
+        return ds;
     }
 }

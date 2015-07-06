@@ -64,7 +64,7 @@ public partial class informacion_paquetes : System.Web.UI.Page
             Response.Write("No Agregado");
         }
 
-        String path = Server.MapPath("\\imagen\\" + fuimagen.FileName);
+        String path = fuimagen.FileName;
         R_QE.WS_QE servicio = new R_QE.WS_QE();
         try
         {

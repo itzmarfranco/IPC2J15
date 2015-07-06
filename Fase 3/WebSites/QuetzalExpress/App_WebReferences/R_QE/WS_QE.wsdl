@@ -109,6 +109,7 @@
             <s:element minOccurs="1" maxOccurs="1" name="pre" type="s:double" />
             <s:element minOccurs="0" maxOccurs="1" name="cat" type="s:string" />
             <s:element minOccurs="1" maxOccurs="1" name="cas" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="est" type="s:string" />
           </s:sequence>
         </s:complexType>
       </s:element>
@@ -231,10 +232,26 @@
           </s:sequence>
         </s:complexType>
       </s:element>
+      <s:element name="cargarPaquetesBodega">
+        <s:complexType />
+      </s:element>
+      <s:element name="cargarPaquetesBodegaResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="cargarPaquetesBodegaResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
       <s:element name="cargarDepartamento">
         <s:complexType>
           <s:sequence>
-            <s:element minOccurs="0" maxOccurs="1" name="suc" type="s:string" />
             <s:element minOccurs="0" maxOccurs="1" name="dep" type="s:string" />
           </s:sequence>
         </s:complexType>
@@ -532,6 +549,50 @@
           </s:sequence>
         </s:complexType>
       </s:element>
+      <s:element name="actualizarPrecio">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="paq" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="pre" type="s:double" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="actualizarPrecioResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="actualizarPrecioResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="aprobarPrecio">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="paq" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="pre" type="s:double" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="aprobarPrecioResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="aprobarPrecioResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="rechazarPrecio">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="paq" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="rechazarPrecioResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="rechazarPrecioResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
       <s:element name="paquetePagado">
         <s:complexType>
           <s:sequence>
@@ -704,6 +765,61 @@
           </s:sequence>
         </s:complexType>
       </s:element>
+      <s:element name="historialEmpleado">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="id" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="historialEmpleadoResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="historialEmpleadoResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="reporte1">
+        <s:complexType />
+      </s:element>
+      <s:element name="reporte1Response">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="reporte1Result">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="reporte1_2">
+        <s:complexType />
+      </s:element>
+      <s:element name="reporte1_2Response">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="reporte1_2Result">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
     </s:schema>
   </wsdl:types>
   <wsdl:message name="HelloWorldSoapIn">
@@ -783,6 +899,12 @@
   </wsdl:message>
   <wsdl:message name="cargarPaquetesSoapOut">
     <wsdl:part name="parameters" element="tns:cargarPaquetesResponse" />
+  </wsdl:message>
+  <wsdl:message name="cargarPaquetesBodegaSoapIn">
+    <wsdl:part name="parameters" element="tns:cargarPaquetesBodega" />
+  </wsdl:message>
+  <wsdl:message name="cargarPaquetesBodegaSoapOut">
+    <wsdl:part name="parameters" element="tns:cargarPaquetesBodegaResponse" />
   </wsdl:message>
   <wsdl:message name="cargarDepartamentoSoapIn">
     <wsdl:part name="parameters" element="tns:cargarDepartamento" />
@@ -892,6 +1014,24 @@
   <wsdl:message name="paqueteExisteSoapOut">
     <wsdl:part name="parameters" element="tns:paqueteExisteResponse" />
   </wsdl:message>
+  <wsdl:message name="actualizarPrecioSoapIn">
+    <wsdl:part name="parameters" element="tns:actualizarPrecio" />
+  </wsdl:message>
+  <wsdl:message name="actualizarPrecioSoapOut">
+    <wsdl:part name="parameters" element="tns:actualizarPrecioResponse" />
+  </wsdl:message>
+  <wsdl:message name="aprobarPrecioSoapIn">
+    <wsdl:part name="parameters" element="tns:aprobarPrecio" />
+  </wsdl:message>
+  <wsdl:message name="aprobarPrecioSoapOut">
+    <wsdl:part name="parameters" element="tns:aprobarPrecioResponse" />
+  </wsdl:message>
+  <wsdl:message name="rechazarPrecioSoapIn">
+    <wsdl:part name="parameters" element="tns:rechazarPrecio" />
+  </wsdl:message>
+  <wsdl:message name="rechazarPrecioSoapOut">
+    <wsdl:part name="parameters" element="tns:rechazarPrecioResponse" />
+  </wsdl:message>
   <wsdl:message name="paquetePagadoSoapIn">
     <wsdl:part name="parameters" element="tns:paquetePagado" />
   </wsdl:message>
@@ -958,6 +1098,24 @@
   <wsdl:message name="guardarImagenSoapOut">
     <wsdl:part name="parameters" element="tns:guardarImagenResponse" />
   </wsdl:message>
+  <wsdl:message name="historialEmpleadoSoapIn">
+    <wsdl:part name="parameters" element="tns:historialEmpleado" />
+  </wsdl:message>
+  <wsdl:message name="historialEmpleadoSoapOut">
+    <wsdl:part name="parameters" element="tns:historialEmpleadoResponse" />
+  </wsdl:message>
+  <wsdl:message name="reporte1SoapIn">
+    <wsdl:part name="parameters" element="tns:reporte1" />
+  </wsdl:message>
+  <wsdl:message name="reporte1SoapOut">
+    <wsdl:part name="parameters" element="tns:reporte1Response" />
+  </wsdl:message>
+  <wsdl:message name="reporte1_2SoapIn">
+    <wsdl:part name="parameters" element="tns:reporte1_2" />
+  </wsdl:message>
+  <wsdl:message name="reporte1_2SoapOut">
+    <wsdl:part name="parameters" element="tns:reporte1_2Response" />
+  </wsdl:message>
   <wsdl:portType name="WS_QESoap">
     <wsdl:operation name="HelloWorld">
       <wsdl:input message="tns:HelloWorldSoapIn" />
@@ -1010,6 +1168,10 @@
     <wsdl:operation name="cargarPaquetes">
       <wsdl:input message="tns:cargarPaquetesSoapIn" />
       <wsdl:output message="tns:cargarPaquetesSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="cargarPaquetesBodega">
+      <wsdl:input message="tns:cargarPaquetesBodegaSoapIn" />
+      <wsdl:output message="tns:cargarPaquetesBodegaSoapOut" />
     </wsdl:operation>
     <wsdl:operation name="cargarDepartamento">
       <wsdl:input message="tns:cargarDepartamentoSoapIn" />
@@ -1083,6 +1245,18 @@
       <wsdl:input message="tns:paqueteExisteSoapIn" />
       <wsdl:output message="tns:paqueteExisteSoapOut" />
     </wsdl:operation>
+    <wsdl:operation name="actualizarPrecio">
+      <wsdl:input message="tns:actualizarPrecioSoapIn" />
+      <wsdl:output message="tns:actualizarPrecioSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="aprobarPrecio">
+      <wsdl:input message="tns:aprobarPrecioSoapIn" />
+      <wsdl:output message="tns:aprobarPrecioSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="rechazarPrecio">
+      <wsdl:input message="tns:rechazarPrecioSoapIn" />
+      <wsdl:output message="tns:rechazarPrecioSoapOut" />
+    </wsdl:operation>
     <wsdl:operation name="paquetePagado">
       <wsdl:input message="tns:paquetePagadoSoapIn" />
       <wsdl:output message="tns:paquetePagadoSoapOut" />
@@ -1126,6 +1300,18 @@
     <wsdl:operation name="guardarImagen">
       <wsdl:input message="tns:guardarImagenSoapIn" />
       <wsdl:output message="tns:guardarImagenSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="historialEmpleado">
+      <wsdl:input message="tns:historialEmpleadoSoapIn" />
+      <wsdl:output message="tns:historialEmpleadoSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="reporte1">
+      <wsdl:input message="tns:reporte1SoapIn" />
+      <wsdl:output message="tns:reporte1SoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="reporte1_2">
+      <wsdl:input message="tns:reporte1_2SoapIn" />
+      <wsdl:output message="tns:reporte1_2SoapOut" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="WS_QESoap" type="tns:WS_QESoap">
@@ -1240,6 +1426,15 @@
     </wsdl:operation>
     <wsdl:operation name="cargarPaquetes">
       <soap:operation soapAction="http://tempuri.org/cargarPaquetes" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="cargarPaquetesBodega">
+      <soap:operation soapAction="http://tempuri.org/cargarPaquetesBodega" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -1409,6 +1604,33 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="actualizarPrecio">
+      <soap:operation soapAction="http://tempuri.org/actualizarPrecio" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="aprobarPrecio">
+      <soap:operation soapAction="http://tempuri.org/aprobarPrecio" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="rechazarPrecio">
+      <soap:operation soapAction="http://tempuri.org/rechazarPrecio" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="paquetePagado">
       <soap:operation soapAction="http://tempuri.org/paquetePagado" style="document" />
       <wsdl:input>
@@ -1501,6 +1723,33 @@
     </wsdl:operation>
     <wsdl:operation name="guardarImagen">
       <soap:operation soapAction="http://tempuri.org/guardarImagen" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="historialEmpleado">
+      <soap:operation soapAction="http://tempuri.org/historialEmpleado" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="reporte1">
+      <soap:operation soapAction="http://tempuri.org/reporte1" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="reporte1_2">
+      <soap:operation soapAction="http://tempuri.org/reporte1_2" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -1621,6 +1870,15 @@
     </wsdl:operation>
     <wsdl:operation name="cargarPaquetes">
       <soap12:operation soapAction="http://tempuri.org/cargarPaquetes" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="cargarPaquetesBodega">
+      <soap12:operation soapAction="http://tempuri.org/cargarPaquetesBodega" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
@@ -1790,6 +2048,33 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="actualizarPrecio">
+      <soap12:operation soapAction="http://tempuri.org/actualizarPrecio" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="aprobarPrecio">
+      <soap12:operation soapAction="http://tempuri.org/aprobarPrecio" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="rechazarPrecio">
+      <soap12:operation soapAction="http://tempuri.org/rechazarPrecio" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="paquetePagado">
       <soap12:operation soapAction="http://tempuri.org/paquetePagado" style="document" />
       <wsdl:input>
@@ -1882,6 +2167,33 @@
     </wsdl:operation>
     <wsdl:operation name="guardarImagen">
       <soap12:operation soapAction="http://tempuri.org/guardarImagen" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="historialEmpleado">
+      <soap12:operation soapAction="http://tempuri.org/historialEmpleado" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="reporte1">
+      <soap12:operation soapAction="http://tempuri.org/reporte1" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="reporte1_2">
+      <soap12:operation soapAction="http://tempuri.org/reporte1_2" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>

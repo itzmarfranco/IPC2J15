@@ -10,7 +10,6 @@ public class empleado
     String nombre;
     String apellido;
     double sueldo;
-    String sucursal;
     String departamento;
     String correo;
     String contraseña;
@@ -22,19 +21,17 @@ public class empleado
         setNombre(null);
         setApellido(null);
         setSueldo(-1);
-        setSucursal(null);
         setDepto(null);
         setCorreo(null);
         setContraseña(null);
         setTipo(null);
 	}
-    public empleado(int id, String depto, String nombre, String apellido, double sueldo, String sucursal, String correo, String contraseña, String tipo)
+    public empleado(int id, String depto, String nombre, String apellido, double sueldo, String correo, String contraseña, String tipo)
     {
         setId(id);        
         setNombre(nombre);
         setApellido(apellido);
         setSueldo(sueldo);
-        setSucursal(sucursal);
         setDepto(depto);
         setCorreo(correo);
         setContraseña(contraseña);
@@ -60,10 +57,6 @@ public class empleado
     public void setDepto(String depto)
     {
         this.departamento = depto;
-    }
-    public void setSucursal(String sucursal)
-    {
-        this.sucursal = sucursal;
     }
     public void setCorreo(String correo)
     {
@@ -96,10 +89,6 @@ public class empleado
     public String getDepto()
     {
         return this.departamento;
-    }
-    public String getSucursal()
-    {
-        return this.sucursal;
     }
     public String getCorreo()
     {

@@ -16,10 +16,11 @@
                     <asp:HyperLink ID="HyperLink1" runat="server" NavigateUrl="~/reportar_perdido.aspx">Reportar perdido</asp:HyperLink>
                 </td>
                 <td>
-                    <asp:HyperLink ID="HyperLink2" runat="server" NavigateUrl="~/principal.aspx">Salir</asp:HyperLink>
+                    <asp:HyperLink ID="HyperLink3" runat="server" NavigateUrl="~/agregar_precio.aspx">Agregar precio</asp:HyperLink>
                 </td>
                 <td>
-                    <asp:HyperLink ID="HyperLink3" runat="server" NavigateUrl="~/agregar_precio.aspx">Salir</asp:HyperLink>
+                    <asp:HyperLink ID="HyperLink2" runat="server" NavigateUrl="~/principal.aspx">Salir</asp:HyperLink>
+                    
                 </td>
             </tr>
         </table>

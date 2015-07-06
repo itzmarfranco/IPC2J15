@@ -17,6 +17,7 @@
                         <Columns>
                             <asp:ButtonField ButtonType="Button" CommandName="modificar" Text="Modificar" />
                             <asp:ButtonField ButtonType="Button" CommandName="despedir" HeaderText="Despedir" ShowHeader="True" Text=":(" />
+                            <asp:ButtonField ButtonType="Button" CommandName="ver" HeaderText="Historial" ShowHeader="True" Text="Ver" />
                         </Columns>
                     </asp:GridView>
                 </td>
@@ -70,6 +71,17 @@
             <tr>
                 <td>
                     <asp:Button ID="btnvolver" runat="server" Text="Volver" OnClick="btnvolver_Click" />
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <table id="his" runat="server" visible="false">
+                        <tr>
+                <td>
+                    <asp:GridView ID="gvhistorial" runat="server"></asp:GridView>
+                </td>
+            </tr>
+                    </table>
                 </td>
             </tr>
         </table>

@@ -29,24 +29,26 @@ public partial class registrar_paquete : System.Web.UI.Page
         Double peso;
         Double precio;
         int casilla;
+        String estado = "";
 
         if (pe != "" && ca != "" && cat != "")
         {
             if (pr != "")
             {
                 precio = Convert.ToDouble(pr);
+                estado = "aprobado";
             }
             else
             {
                 precio = 0;
+                estado = "pendiente";
             }
-            peso = Convert.ToDouble(pe);
-            
-            casilla = Convert.ToInt32(ca);            
+            peso = Convert.ToDouble(pe);            
+            casilla = Convert.ToInt32(ca);
             R_QE.WS_QE servicio = new R_QE.WS_QE();
             if (servicio.clienteExiste(casilla))
             {
-                Boolean exito = servicio.registrarPaquete(peso, precio, cat, casilla);
+                Boolean exito = servicio.registrarPaquete(peso, precio, cat, casilla, estado);
                 if (exito)
                 {
                     lblerror.Text = "Paquete registrado";
