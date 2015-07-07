@@ -170,8 +170,10 @@ INSERT INTO COBRO VALUES ('Comision', 0.05, 'habilitado')
 SELECT * FROM SOLICITUD
 SELECT * FROM CLIENTE
 SELECT * FROM EMPLEADO
+INSERT INTO ASIGNACION_DEPARTAMENTO VALUES (1, 9, GETDATE(), 6001)
 SELECT * FROM DEPARTAMENTO
 SELECT * FROM SUCURSAL
+DELETE FROM ASIGNACION_DEPARTAMENTO WHERE id = 7
 SELECT * FROM ASIGNACION_DEPARTAMENTO
 SELECT * FROM FACTURA
 SELECT * FROM IMPUESTO
@@ -233,8 +235,6 @@ SELECT (SUM(paq.precio))*(SELECT imp.valor FROM IMPUESTO imp) FROM PAQUETE paq, 
 
 
 
-
-
 SELECT (SELECT imp.nombre FROM IMPUESTO imp WHERE imp.id = paq.categoria) AS 'Categoria', (SELECT COUNT(est.paquete) FROM ESTADO est WHERE est.paquete = paq.id AND est.nombre = 'Recibido') AS 'Paquetes recibidos', (SELECT COUNT(est.paquete) FROM ESTADO est WHERE est.paquete = paq.id AND est.nombre = 'Perdido') AS 'Paquetes perdidos', (SELECT COUNT(est.paquete) FROM ESTADO est WHERE est.paquete = paq.id AND est.nombre = 'Entregado') AS 'Paquetes entregados' FROM PAQUETE paq, IMPUESTO imp WHERE paq.categoria = imp.id
 SELECT (SELECT valor FROM IMPUESTO WHERE id = paq.categoria)*SUM(paq.precio) AS 'Suma de impuestos', (SELECT valor FROM COBRO WHERE nombre = 'Libra')*SUM(paq.peso) AS 'Suma de pesos' FROM PAQUETE paq GROUP BY paq.categoria
 
@@ -246,5 +246,20 @@ SELECT empleado AS 'Empleado', sueldo AS 'Sueldo', departamento AS 'Departamento
 SELECT * FROM ASIGNACION_DEPARTAMENTO
 
 
+SELECT * FROM IMPUESTO
+SELECT TOP 3 COUNT(PAQUETE.id) AS 'Cantidad', (SELECT nombre FROM IMPUESTO WHERE id = PAQUETE.categoria) FROM PAQUETE GROUP BY (PAQUETE.categoria)
+
+
 
 SELECT emp.id AS 'ID', emp.nombre AS 'Nombre', emp.apellido AS 'Apellido', (SELECT sueldo FROM ASIGNACION_DEPARTAMENTO WHERE empleado = emp.id) AS 'Sueldo', (SELECT nombre FROM DEPARTAMENTO WHERE id = (SELECT ad.departamento FROM ASIGNACION_DEPARTAMENTO WHERE empleado = emp.id)) AS 'Departamento' FROM EMPLEADO emp, ASIGNACION_DEPARTAMENTO ad WHERE emp.id = ad.empleado AND (SELECT nombre FROM DEPARTAMENTO WHERE id =  ad.departamento) = 'Registro' AND tipo = 'empleado'
+
+SELECT (SELECT nombre FROM DEPARTAMENTO WHERE id = ASIGNACION_DEPARTAMENTO.departamento), (SELECT COUNT(departamento) FROM ASIGNACION_DEPARTAMENTO WHERE EMPLEADO.id = ASIGNACION_DEPARTAMENTO.empleado) FROM EMPLEADO, ASIGNACION_DEPARTAMENTO WHERE EMPLEADO.id = ASIGNACION_DEPARTAMENTO.empleado GROUP BY ASIGNACION_DEPARTAMENTO.departamento
+
+SELECT * FROM SUCURSAL
+SELECT * FROM ASIGNACION_DEPARTAMENTO
+SELECT * FROM DEPARTAMENTO
+
+select A1.nombre, COUNT((SELECT sucursal FROM DEPARTAMENTO)), SUM(A2.sueldo) from DEPARTAMENTO A1, ASIGNACION_DEPARTAMENTO A2, SUCURSAL A3 where A1.id = A2.departamento group by A1.nombre
+
+select A1.nombre, COUNT(A2.sucursal), SUM(A3.sueldo) from SUCURSAL A1, DEPARTAMENTO A2, ASIGNACION_DEPARTAMENTO A3 where A1.id = A2.sucursal AND A2.id = A3.departamento group by A1.nombre
+SELECT * FROM BODEGA

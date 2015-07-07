@@ -125,7 +125,7 @@ public class conexion
     }
     public static Boolean empleadoExiste(String correo, String contra)
     {
-        String query = string.Format("SELECT * FROM EMPLEADO WHERE correo = '{0}' AND contraseña = '{1}'", correo, contra);
+        String query = string.Format("SELECT * FROM EMPLEADO WHERE correo = '{0}' AND contraseña = '{1}' AND estado = 'contratado'", correo, contra);
         Boolean existe = ejecutar1(query);
         return existe;
     }

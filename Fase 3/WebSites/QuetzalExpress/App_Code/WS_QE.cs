@@ -162,7 +162,7 @@ public class WS_QE : System.Web.Services.WebService {
     public DataSet cargarDepartamento(String dep)
     {
         conexion c = new conexion();
-        String query = string.Format("SELECT emp.id AS 'ID', emp.nombre AS 'Nombre', emp.apellido AS 'Apellido', (SELECT sueldo FROM ASIGNACION_DEPARTAMENTO WHERE empleado = emp.id) AS 'Sueldo', (SELECT nombre FROM DEPARTAMENTO WHERE id = (SELECT ad.departamento FROM ASIGNACION_DEPARTAMENTO WHERE empleado = emp.id)) AS 'Departamento' FROM EMPLEADO emp, ASIGNACION_DEPARTAMENTO ad WHERE emp.id = ad.empleado AND (SELECT nombre FROM DEPARTAMENTO WHERE id =  ad.departamento) = '{0}' AND tipo = 'empleado'", dep);
+        String query = string.Format("SELECT emp.id AS 'ID', emp.nombre AS 'Nombre', emp.apellido AS 'Apellido', (SELECT sueldo FROM ASIGNACION_DEPARTAMENTO WHERE empleado = emp.id) AS 'Sueldo', (SELECT nombre FROM DEPARTAMENTO WHERE id = (SELECT ad.departamento FROM ASIGNACION_DEPARTAMENTO WHERE empleado = emp.id)) AS 'Departamento' FROM EMPLEADO emp, ASIGNACION_DEPARTAMENTO ad WHERE emp.id = ad.empleado AND (SELECT nombre FROM DEPARTAMENTO WHERE id =  ad.departamento) = '{0}' AND tipo = 'empleado' AND estado = 'contratado'", dep);
         SqlCommand sqlcmd = new SqlCommand(query, c.obtenerConexion());
         c.abrir();
         SqlDataAdapter sqlda = new SqlDataAdapter(sqlcmd);
@@ -243,7 +243,7 @@ public class WS_QE : System.Web.Services.WebService {
     public Boolean reportarPerdido(int bod)
     {
         Boolean exito = false;
-        String query = string.Format("UPDATE BODEGA SET estado = 'perdido' WHERE id = {0}", bod);
+        String query = string.Format("UPDATE BODEGA SET estado = 'perdido' WHERE id = {0", bod);
         exito = conexion.ejecutar1(query);
         return exito;
     }
@@ -407,15 +407,15 @@ public class WS_QE : System.Web.Services.WebService {
     public Boolean despedirEmpleado(int id)
     {
         Boolean exito = false;
-        String query = string.Format("DELETE FROM EMPLEADO WHERE id = {0}", id);
+        String query = string.Format("UPDATE EMPLEADO SET estado = 'despedido' WHERE id = {0}", id);
         exito = conexion.ejecutar1(query);
         return exito;
     }
     [WebMethod]
-    public Boolean actualizarEmpleado(int id, Double sue, String suc, String dep)
+    public Boolean actualizarEmpleado(int id, Double sue, String dep)
     {
         Boolean exito = false;
-        String query = string.Format("UPDATE EMPLEADO SET sueldo = {0}, sucursal = '{1}', departamento = '{2}' WHERE id = {3}", sue, suc, dep, id);
+        String query = string.Format("UPDATE ASIGNACION_DEPARTAMENTO SET sueldo = {0}, departamento = (SELECT id FROM DEPARTAMENTO WHERE nombre = '{1}') WHERE empleado = {2}", sue, dep, id);
         exito = conexion.ejecutar2(query);
         return exito;
     }
@@ -511,6 +511,45 @@ public class WS_QE : System.Web.Services.WebService {
     {
         conexion c = new conexion();
         String query = string.Format("SELECT (SELECT valor FROM IMPUESTO WHERE id = paq.categoria)*SUM(paq.precio) AS 'Suma de impuestos', (SELECT valor FROM COBRO WHERE nombre = 'Libra')*SUM(paq.peso) AS 'Suma de pesos' FROM PAQUETE paq GROUP BY paq.categoria");
+        SqlCommand sqlcmd = new SqlCommand(query, c.obtenerConexion());
+        c.abrir();
+        SqlDataAdapter sqlda = new SqlDataAdapter(sqlcmd);
+        DataSet ds = new DataSet();
+        sqlda.Fill(ds);
+        c.cerrar();
+        return ds;
+    }
+    [WebMethod]
+    public DataSet reporte3()
+    {
+        conexion c = new conexion();
+        String query = string.Format("select A1.nombre AS 'Sucursal', COUNT(A2.sucursal), SUM(A3.sueldo) from SUCURSAL A1, DEPARTAMENTO A2, ASIGNACION_DEPARTAMENTO A3 where A1.id = A2.sucursal AND A2.id = A3.departamento group by A1.nombre");
+        SqlCommand sqlcmd = new SqlCommand(query, c.obtenerConexion());
+        c.abrir();
+        SqlDataAdapter sqlda = new SqlDataAdapter(sqlcmd);
+        DataSet ds = new DataSet();
+        sqlda.Fill(ds);
+        c.cerrar();
+        return ds;
+    }
+    [WebMethod]
+    public DataSet reporte4()
+    {
+        conexion c = new conexion();
+        String query = string.Format("select A1.nombre AS 'Departamento', COUNT(A2.departamento), SUM(A2.sueldo) AS 'Suma de sueldos' AS 'Suma de sueldos' from DEPARTAMENTO A1, ASIGNACION_DEPARTAMENTO A2 where A1.id = A2.departamento group by A1.nombre");
+        SqlCommand sqlcmd = new SqlCommand(query, c.obtenerConexion());
+        c.abrir();
+        SqlDataAdapter sqlda = new SqlDataAdapter(sqlcmd);
+        DataSet ds = new DataSet();
+        sqlda.Fill(ds);
+        c.cerrar();
+        return ds;
+    }
+    [WebMethod]
+    public DataSet reporte5()
+    {
+        conexion c = new conexion();
+        String query = string.Format("SELECT TOP 5 COUNT(PAQUETE.id) AS 'Cantidad', (SELECT nombre FROM IMPUESTO WHERE id = PAQUETE.categoria) AS 'Categoria' FROM PAQUETE GROUP BY (PAQUETE.categoria)");
         SqlCommand sqlcmd = new SqlCommand(query, c.obtenerConexion());
         c.abrir();
         SqlDataAdapter sqlda = new SqlDataAdapter(sqlcmd);

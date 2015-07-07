@@ -647,7 +647,6 @@
           <s:sequence>
             <s:element minOccurs="1" maxOccurs="1" name="id" type="s:int" />
             <s:element minOccurs="1" maxOccurs="1" name="sue" type="s:double" />
-            <s:element minOccurs="0" maxOccurs="1" name="suc" type="s:string" />
             <s:element minOccurs="0" maxOccurs="1" name="dep" type="s:string" />
           </s:sequence>
         </s:complexType>
@@ -810,6 +809,57 @@
         <s:complexType>
           <s:sequence>
             <s:element minOccurs="0" maxOccurs="1" name="reporte1_2Result">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="reporte3">
+        <s:complexType />
+      </s:element>
+      <s:element name="reporte3Response">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="reporte3Result">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="reporte4">
+        <s:complexType />
+      </s:element>
+      <s:element name="reporte4Response">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="reporte4Result">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="reporte5">
+        <s:complexType />
+      </s:element>
+      <s:element name="reporte5Response">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="reporte5Result">
               <s:complexType>
                 <s:sequence>
                   <s:element ref="s:schema" />
@@ -1116,6 +1166,24 @@
   <wsdl:message name="reporte1_2SoapOut">
     <wsdl:part name="parameters" element="tns:reporte1_2Response" />
   </wsdl:message>
+  <wsdl:message name="reporte3SoapIn">
+    <wsdl:part name="parameters" element="tns:reporte3" />
+  </wsdl:message>
+  <wsdl:message name="reporte3SoapOut">
+    <wsdl:part name="parameters" element="tns:reporte3Response" />
+  </wsdl:message>
+  <wsdl:message name="reporte4SoapIn">
+    <wsdl:part name="parameters" element="tns:reporte4" />
+  </wsdl:message>
+  <wsdl:message name="reporte4SoapOut">
+    <wsdl:part name="parameters" element="tns:reporte4Response" />
+  </wsdl:message>
+  <wsdl:message name="reporte5SoapIn">
+    <wsdl:part name="parameters" element="tns:reporte5" />
+  </wsdl:message>
+  <wsdl:message name="reporte5SoapOut">
+    <wsdl:part name="parameters" element="tns:reporte5Response" />
+  </wsdl:message>
   <wsdl:portType name="WS_QESoap">
     <wsdl:operation name="HelloWorld">
       <wsdl:input message="tns:HelloWorldSoapIn" />
@@ -1312,6 +1380,18 @@
     <wsdl:operation name="reporte1_2">
       <wsdl:input message="tns:reporte1_2SoapIn" />
       <wsdl:output message="tns:reporte1_2SoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="reporte3">
+      <wsdl:input message="tns:reporte3SoapIn" />
+      <wsdl:output message="tns:reporte3SoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="reporte4">
+      <wsdl:input message="tns:reporte4SoapIn" />
+      <wsdl:output message="tns:reporte4SoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="reporte5">
+      <wsdl:input message="tns:reporte5SoapIn" />
+      <wsdl:output message="tns:reporte5SoapOut" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="WS_QESoap" type="tns:WS_QESoap">
@@ -1757,6 +1837,33 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="reporte3">
+      <soap:operation soapAction="http://tempuri.org/reporte3" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="reporte4">
+      <soap:operation soapAction="http://tempuri.org/reporte4" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="reporte5">
+      <soap:operation soapAction="http://tempuri.org/reporte5" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
   </wsdl:binding>
   <wsdl:binding name="WS_QESoap12" type="tns:WS_QESoap">
     <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
@@ -2194,6 +2301,33 @@
     </wsdl:operation>
     <wsdl:operation name="reporte1_2">
       <soap12:operation soapAction="http://tempuri.org/reporte1_2" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="reporte3">
+      <soap12:operation soapAction="http://tempuri.org/reporte3" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="reporte4">
+      <soap12:operation soapAction="http://tempuri.org/reporte4" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="reporte5">
+      <soap12:operation soapAction="http://tempuri.org/reporte5" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>

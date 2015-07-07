@@ -39,9 +39,8 @@ public partial class ver_departamento : System.Web.UI.Page
         if (e.CommandName == "modificar")
         {
             his.Visible = false;
-            lblid.Text = gvdepartamento.Rows[index].Cells[2].Text;
-            txtsueldo.Text = gvdepartamento.Rows[index].Cells[5].Text;
-            txtsucursal.Text = gvdepartamento.Rows[index].Cells[6].Text;
+            lblid.Text = gvdepartamento.Rows[index].Cells[3].Text;
+            txtsueldo.Text = gvdepartamento.Rows[index].Cells[6].Text;
             txtdepartamento.Text = gvdepartamento.Rows[index].Cells[7].Text;
             ta.Visible = true;
         }
@@ -56,12 +55,11 @@ public partial class ver_departamento : System.Web.UI.Page
         R_QE.WS_QE servicio = new R_QE.WS_QE();
         int id = Convert.ToInt32(lblid.Text);
         String s = txtsueldo.Text;
-        String suc = txtsucursal.Text;
         String dep = txtdepartamento.Text;
-        if (s != "" && suc != "" && dep != "")
+        if (s != "" && dep != "")
         {
             Double sue = Convert.ToDouble(s);
-            Boolean exito = servicio.actualizarEmpleado(id, sue, suc, dep);
+            Boolean exito = servicio.actualizarEmpleado(id, sue, dep);
             if (exito)
             {
                 lblerror.Text = "Empleado modificado";

@@ -9,6 +9,12 @@ public partial class Reporte3 : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-
+        /*R_QE.WS_QE servicio = new R_QE.WS_QE();
+        gv1.DataSource = servicio.reporte3();
+        gv1.DataBind();*/
+    }
+    protected void btnvolver_Click(object sender, EventArgs e)
+    {
+        Response.Redirect("/reportes.aspx");
     }
 }

@@ -36,14 +36,7 @@
                                 <asp:TextBox ID="txtsueldo" runat="server" TextMode="Number"></asp:TextBox>
                             </td>
                         </tr>
-                        <tr>
-                            <td>
-                                Sucursal:
-                            </td>
-                            <td>
-                                <asp:TextBox ID="txtsucursal" runat="server"></asp:TextBox>
-                            </td>
-                        </tr>
+                        
                         <tr>
                             <td>
                                 Departamento:
